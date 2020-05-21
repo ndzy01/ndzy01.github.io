@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>安装 mongodb | 笔记</title>
+    <meta name="description" content="笔记">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/public/note.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.4b1b2517.css" as="style"><link rel="preload" href="/assets/js/app.d5691479.js" as="script"><link rel="preload" href="/assets/js/2.6ca66694.js" as="script"><link rel="preload" href="/assets/js/21.1f348116.js" as="script"><link rel="prefetch" href="/assets/js/10.4c6faa60.js"><link rel="prefetch" href="/assets/js/11.28a3bf3d.js"><link rel="prefetch" href="/assets/js/12.b221be36.js"><link rel="prefetch" href="/assets/js/13.2396bd69.js"><link rel="prefetch" href="/assets/js/14.6ced640e.js"><link rel="prefetch" href="/assets/js/15.19085bd1.js"><link rel="prefetch" href="/assets/js/16.0a5113ae.js"><link rel="prefetch" href="/assets/js/17.0e1630fe.js"><link rel="prefetch" href="/assets/js/18.b9e6ec66.js"><link rel="prefetch" href="/assets/js/19.f377aba8.js"><link rel="prefetch" href="/assets/js/20.c654fa89.js"><link rel="prefetch" href="/assets/js/22.adfa28e6.js"><link rel="prefetch" href="/assets/js/23.0e579530.js"><link rel="prefetch" href="/assets/js/24.a490709e.js"><link rel="prefetch" href="/assets/js/25.13697a0d.js"><link rel="prefetch" href="/assets/js/26.d3ede8c2.js"><link rel="prefetch" href="/assets/js/27.0a645397.js"><link rel="prefetch" href="/assets/js/28.48d63663.js"><link rel="prefetch" href="/assets/js/29.d1bfe590.js"><link rel="prefetch" href="/assets/js/3.e8f083cd.js"><link rel="prefetch" href="/assets/js/30.568bfbe7.js"><link rel="prefetch" href="/assets/js/31.ed9808d2.js"><link rel="prefetch" href="/assets/js/32.9727f84f.js"><link rel="prefetch" href="/assets/js/33.0fcf4622.js"><link rel="prefetch" href="/assets/js/34.f7b22a04.js"><link rel="prefetch" href="/assets/js/4.93703ed1.js"><link rel="prefetch" href="/assets/js/5.bca52f51.js"><link rel="prefetch" href="/assets/js/6.1cba4931.js"><link rel="prefetch" href="/assets/js/7.f5130777.js"><link rel="prefetch" href="/assets/js/8.6e98f6d7.js"><link rel="prefetch" href="/assets/js/9.9fe33c62.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4b1b2517.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link router-link-exact-active router-link-active">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link router-link-exact-active router-link-active">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/05mongodb/" class="active sidebar-link">安装 mongodb</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="安装-mongodb"><a href="#安装-mongodb" class="header-anchor">#</a> 安装 mongodb</h1> <div class="language- line-numbers-mode"><pre class="language-text"><code>权限不够时使用sudo
+
+curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1804-4.2.6.tgz
+
+tar -zxvf mongodb-linux-x86_64-ubuntu1804-4.2.6.tgz
+
+mkdir -p /home/mongodb/conf /home/mongodb/data /home/mongodb/log   # 配置目录 data目录 日志目录
+
+chmod 777 /home/mongodb/ # 更改权限
+
+mv mongodb-linux-x86_64-ubuntu1804-4.2.6/ /home/mongodb/
+
+
+
+cd /home/mongodb/conf
+# 注释不要放到文件中，不然容易出问题
+vim mongodb.conf  # 新建并编辑配置文件
+
+dbpath=/home/mongodb/data  #数据存储目录
+
+logpath=/home/mongodb/log/mongodb.log     #日志文件路径
+
+logappend = true #追加
+
+port=29999 #端口号
+
+fork=true #后台进程
+
+bind_ip=0.0.0.0 # 远程连接
+
+dbpath=/home/mongodb/data  
+logpath=/home/mongodb/log/mongodb.log    
+logappend = true
+port=29999
+fork=true
+
+cd /home/mongodb/mongodb-linux-x86_64-ubuntu1804-4.2.6/bin/
+
+./mongod -f /home/mongodb/conf/mongodb.conf
+
+mongo
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><p><img src="/mongodb/install.png" alt="install" title="mongodb安装包地址"></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/15/2020, 11:33:03 AM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.d5691479.js" defer></script><script src="/assets/js/2.6ca66694.js" defer></script><script src="/assets/js/21.1f348116.js" defer></script>
+  </body>
+</html>

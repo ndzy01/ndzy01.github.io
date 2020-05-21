@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>垂直居中 | 笔记</title>
+    <meta name="description" content="笔记">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/public/note.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.4b1b2517.css" as="style"><link rel="preload" href="/assets/js/app.d5691479.js" as="script"><link rel="preload" href="/assets/js/2.6ca66694.js" as="script"><link rel="preload" href="/assets/js/15.19085bd1.js" as="script"><link rel="prefetch" href="/assets/js/10.4c6faa60.js"><link rel="prefetch" href="/assets/js/11.28a3bf3d.js"><link rel="prefetch" href="/assets/js/12.b221be36.js"><link rel="prefetch" href="/assets/js/13.2396bd69.js"><link rel="prefetch" href="/assets/js/14.6ced640e.js"><link rel="prefetch" href="/assets/js/16.0a5113ae.js"><link rel="prefetch" href="/assets/js/17.0e1630fe.js"><link rel="prefetch" href="/assets/js/18.b9e6ec66.js"><link rel="prefetch" href="/assets/js/19.f377aba8.js"><link rel="prefetch" href="/assets/js/20.c654fa89.js"><link rel="prefetch" href="/assets/js/21.1f348116.js"><link rel="prefetch" href="/assets/js/22.adfa28e6.js"><link rel="prefetch" href="/assets/js/23.0e579530.js"><link rel="prefetch" href="/assets/js/24.a490709e.js"><link rel="prefetch" href="/assets/js/25.13697a0d.js"><link rel="prefetch" href="/assets/js/26.d3ede8c2.js"><link rel="prefetch" href="/assets/js/27.0a645397.js"><link rel="prefetch" href="/assets/js/28.48d63663.js"><link rel="prefetch" href="/assets/js/29.d1bfe590.js"><link rel="prefetch" href="/assets/js/3.e8f083cd.js"><link rel="prefetch" href="/assets/js/30.568bfbe7.js"><link rel="prefetch" href="/assets/js/31.ed9808d2.js"><link rel="prefetch" href="/assets/js/32.9727f84f.js"><link rel="prefetch" href="/assets/js/33.0fcf4622.js"><link rel="prefetch" href="/assets/js/34.f7b22a04.js"><link rel="prefetch" href="/assets/js/4.93703ed1.js"><link rel="prefetch" href="/assets/js/5.bca52f51.js"><link rel="prefetch" href="/assets/js/6.1cba4931.js"><link rel="prefetch" href="/assets/js/7.f5130777.js"><link rel="prefetch" href="/assets/js/8.6e98f6d7.js"><link rel="prefetch" href="/assets/js/9.9fe33c62.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4b1b2517.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link router-link-active">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link router-link-active">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/01css/" class="sidebar-link">CSS</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>01-布局</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/01css/01-布局/水平居中.html" class="sidebar-link">水平居中</a></li><li><a href="/01css/01-布局/垂直居中.html" class="active sidebar-link">垂直居中</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#单行-文本、行内元素、行内块级元素" class="sidebar-link">单行  文本、行内元素、行内块级元素</a></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#多行-文本、行内元素、行内块级元素" class="sidebar-link">多行  文本、行内元素、行内块级元素</a></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#图片" class="sidebar-link">图片</a></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#单个块级元素" class="sidebar-link">单个块级元素</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#table-cell" class="sidebar-link">table-cell</a></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#绝对定位" class="sidebar-link">绝对定位</a></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#flex" class="sidebar-link">flex</a></li></ul></li><li class="sidebar-sub-header"><a href="/01css/01-布局/垂直居中.html#任意元素（flex）" class="sidebar-link">任意元素（flex）</a></li></ul></li><li><a href="/01css/01-布局/水平垂直居中.html" class="sidebar-link">水平垂直居中</a></li><li><a href="/01css/01-布局/两列布局.html" class="sidebar-link">两列布局</a></li><li><a href="/01css/01-布局/三列布局.html" class="sidebar-link">三列布局</a></li><li><a href="/01css/01-布局/多列布局.html" class="sidebar-link">多列布局</a></li><li><a href="/01css/01-布局/全屏布局.html" class="sidebar-link">全屏布局</a></li><li><a href="/01css/01-布局/其他.html" class="sidebar-link">其他</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="垂直居中"><a href="#垂直居中" class="header-anchor">#</a> 垂直居中</h1> <h2 id="单行-文本、行内元素、行内块级元素"><a href="#单行-文本、行内元素、行内块级元素" class="header-anchor">#</a> 单行  文本、行内元素、行内块级元素</h2> <p>原理：<strong>line-height</strong>的最终表现是通过inline box实现的，而无论inline box所占据的高度是多少（无论比文字大还是比文字小），其占据的空间都是与文字内容公用水平中垂线的</p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+	<span class="token property">hight</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+	<span class="token property">line-height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>优缺点</p> <ol><li>简单；兼容性好</li> <li>只适合单行行内元内容；需要知道高度</li></ol> <h2 id="多行-文本、行内元素、行内块级元素"><a href="#多行-文本、行内元素、行内块级元素" class="header-anchor">#</a> 多行  文本、行内元素、行内块级元素</h2> <p>原理：<strong>line-height</strong></p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+	<span class="token property">hight</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+	<span class="token property">line-height</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span> <span class="token comment">/* 例如有五行(150/5) */</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>优缺点</p> <ol><li>简单；兼容性好</li> <li>只适合多行行内内容； 需要知道高度（多行文本最好使用<strong>span</strong>包裹）</li></ol> <h2 id="图片"><a href="#图片" class="header-anchor">#</a> 图片</h2> <p>原理：使用<strong>vertical-align</strong>和<strong>line-height</strong></p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 700px<span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> 700px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> aquamarine<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">img#son</span> <span class="token punctuation">{</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span> <span class="token comment">/* 默认基线对齐，改为middle */</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>优缺点</p> <ol><li>简单；兼容性好</li> <li>需要设置 **font-size: 0;**才可以完全居中</li></ol> <h2 id="单个块级元素"><a href="#单个块级元素" class="header-anchor">#</a> 单个块级元素</h2> <div class="language-css line-numbers-mode"><pre class="language-css"><code>&lt;div id=<span class="token string">&quot;parent&quot;</span>&gt;
+    &lt;div id=<span class="token string">&quot;son&quot;</span>&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="table-cell"><a href="#table-cell" class="header-anchor">#</a> table-cell</h3> <p>原理：<strong>CSS Table</strong>，使表格对齐方式为middle</p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
+    <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>优缺点</p> <ol><li>简单；兼容性好（ie8+）</li> <li>设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置display: table; 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素</li></ol> <h3 id="绝对定位"><a href="#绝对定位" class="header-anchor">#</a> 绝对定位</h3> <p>原理：子绝父相，top、right、bottom、left 相对于父元素；margin、transform相对于自身，组合使用</p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>  <span class="token comment">/*父相*/</span>
+<span class="token punctuation">}</span>
+<span class="token selector">#son</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>  <span class="token comment">/*子绝*/</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>  <span class="token comment">/*父元素高度一半,这里等同于top:75px;*/</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateY</span><span class="token punctuation">(</span>-50%<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*自身高度一半,这里等同于margin-top:-25px;*/</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*优缺点
+- 优点：使用margin-top兼容性好；不管是块级还是行内元素都可以实现
+- 缺点：代码较多；脱离文档流；使用margin-top需要知道高度值；使用transform兼容性不好（ie9+）*/</span>
+
+或
+
+<span class="token comment">/*原理：当top、bottom为0时,margin-top&amp;bottom会无限延伸占满空间并且平分*/</span>
+<span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#son</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> auto 0<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*优缺点
+- 优点：简单;兼容性较好(ie8+)
+- 缺点：脱离文档流*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h3 id="flex"><a href="#flex" class="header-anchor">#</a> flex</h3> <p>原理：flex设置对齐方式</p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">或
+
+#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">#son</span><span class="token punctuation">{</span>
+    <span class="token property">align-self</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+或
+<span class="token comment">/*原理：这个尚未搞清楚，应该是flex使margin上下边界无限延伸至剩余空间并平分了*/</span>
+<span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">#son</span><span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> auto 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>优缺点</p> <ol><li>简单灵活；功能强大</li> <li>pc兼容性不好；移动端（android4.0+）</li></ol> <h2 id="任意元素（flex）"><a href="#任意元素（flex）" class="header-anchor">#</a> 任意元素（flex）</h2> <p>原理：flex设置对齐方式</p> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">或
+
+#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.son</span><span class="token punctuation">{</span>
+    <span class="token property">align-self</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">或 
+
+#parent</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+    <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>优缺点</p> <ol><li>简单灵活；功能强大</li> <li>pc兼容性不好；移动端（android4.0+）</li></ol> <blockquote><p><strong>总结</strong></p> <p>对于垂直居中，最先想到的应该就是 <code>line-height</code> 了，但是这个只能用于行内内容；</p> <p>其次就是考虑能不能用<code>vertical-align: middle;</code> ，不过这个一定要熟知原理才能用得顺手，建议看下<a href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/" target="_blank" rel="noopener noreferrer">vertical-align和line-height的基友关系<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> ；</p> <p>然后便是绝对定位，虽然代码多了点，但是胜在适用于不同情况；</p> <p>移动端兼容性允许的情况下能用flex就用flex</p></blockquote></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/15/2020, 11:33:03 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/01css/01-布局/水平居中.html" class="prev">
+        水平居中
+      </a></span> <span class="next"><a href="/01css/01-布局/水平垂直居中.html">
+        水平垂直居中
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.d5691479.js" defer></script><script src="/assets/js/2.6ca66694.js" defer></script><script src="/assets/js/15.19085bd1.js" defer></script>
+  </body>
+</html>

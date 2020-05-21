@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React 面试题 &amp; 回答 | 笔记</title>
+    <meta name="description" content="笔记">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/public/note.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.4b1b2517.css" as="style"><link rel="preload" href="/assets/js/app.d5691479.js" as="script"><link rel="preload" href="/assets/js/2.6ca66694.js" as="script"><link rel="preload" href="/assets/js/22.adfa28e6.js" as="script"><link rel="preload" href="/assets/js/6.1cba4931.js" as="script"><link rel="prefetch" href="/assets/js/10.4c6faa60.js"><link rel="prefetch" href="/assets/js/11.28a3bf3d.js"><link rel="prefetch" href="/assets/js/12.b221be36.js"><link rel="prefetch" href="/assets/js/13.2396bd69.js"><link rel="prefetch" href="/assets/js/14.6ced640e.js"><link rel="prefetch" href="/assets/js/15.19085bd1.js"><link rel="prefetch" href="/assets/js/16.0a5113ae.js"><link rel="prefetch" href="/assets/js/17.0e1630fe.js"><link rel="prefetch" href="/assets/js/18.b9e6ec66.js"><link rel="prefetch" href="/assets/js/19.f377aba8.js"><link rel="prefetch" href="/assets/js/20.c654fa89.js"><link rel="prefetch" href="/assets/js/21.1f348116.js"><link rel="prefetch" href="/assets/js/23.0e579530.js"><link rel="prefetch" href="/assets/js/24.a490709e.js"><link rel="prefetch" href="/assets/js/25.13697a0d.js"><link rel="prefetch" href="/assets/js/26.d3ede8c2.js"><link rel="prefetch" href="/assets/js/27.0a645397.js"><link rel="prefetch" href="/assets/js/28.48d63663.js"><link rel="prefetch" href="/assets/js/29.d1bfe590.js"><link rel="prefetch" href="/assets/js/3.e8f083cd.js"><link rel="prefetch" href="/assets/js/30.568bfbe7.js"><link rel="prefetch" href="/assets/js/31.ed9808d2.js"><link rel="prefetch" href="/assets/js/32.9727f84f.js"><link rel="prefetch" href="/assets/js/33.0fcf4622.js"><link rel="prefetch" href="/assets/js/34.f7b22a04.js"><link rel="prefetch" href="/assets/js/4.93703ed1.js"><link rel="prefetch" href="/assets/js/5.bca52f51.js"><link rel="prefetch" href="/assets/js/7.f5130777.js"><link rel="prefetch" href="/assets/js/8.6e98f6d7.js"><link rel="prefetch" href="/assets/js/9.9fe33c62.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4b1b2517.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link router-link-active">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/00html/" class="nav-link">
+  html
+</a></div><div class="nav-item"><a href="/01css/" class="nav-link">
+  css
+</a></div><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/05mongodb/" class="nav-link">
+  mongodb
+</a></div><div class="nav-item"><a href="/06interview/" class="nav-link router-link-active">
+  interview
+</a></div><div class="nav-item"><a href="/07git/" class="nav-link">
+  git
+</a></div><div class="nav-item"><a href="/08win/" class="nav-link">
+  win
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/06interview/" class="sidebar-link">interview</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/06interview/00_react/" class="active sidebar-link">React 面试题 &amp; 回答</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/06interview/00_react/#core-react" class="sidebar-link">Core React</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/06interview/00_react/#什么是-react" class="sidebar-link">什么是 React?</a></li></ul></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>html</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>css</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-面试题-回答"><a href="#react-面试题-回答" class="header-anchor">#</a> React 面试题 &amp; 回答</h1> <h2 id="core-react"><a href="#core-react" class="header-anchor">#</a> Core React</h2> <h3 id="什么是-react"><a href="#什么是-react" class="header-anchor">#</a> 什么是 React?</h3> <div><section><p><a href="https://reactjs.org/" target="_blank">React</a>
+      是一个开源前端 JavaScript 库，用于构建用户界面，尤其是单页应用程序。它用于处理网页和移动应用程序的视图层。
+    </p> <p>React 是由 Facebook 的软件工程师 Jordan Walke 创建的。在 2011 年 React 应用首次被部署到 Facebook 的信息流中，之后于 2012 年被应用到 Instagram 上</p></section> <ol><h4>阅读资源：</h4> <li><a href="https://react.docschina.org/docs/hello-world.html" target="_blank">React 中文文档</a></li> <li><a href="(https://juejin.im/post/5b481f6b51882519ad6175c2" target="_blank">掘金 - 图解 React</a></li> <li><a href="https://juejin.im/post/5c0c7304f265da613e22106c" target="_blank">掘金 - 200 行代码实现简版 react</a></li></ol></div> <h1 id="react-key-作用-为什么不使用-index-做-key-值"><a href="#react-key-作用-为什么不使用-index-做-key-值" class="header-anchor">#</a> react key 作用 为什么不使用 index 做 key 值</h1> <p>react 使用 key 来标识组件，每个 key 对应一个组件，在一定范围内组件的 key 是唯一稳定的，如果 key 值相同 react 会认为他们是同一个组件，后续的组件 react 将不会去创建。</p> <p>常用场景 数组动态创建组件</p> <p>涉及到数组的动态变更，例如数组新增元素、删除元素或者重新排序等，使用 index 作为 key 会导致数据错误的展示</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/20/2020, 11:02:17 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/06interview/" class="prev router-link-active">
+        interview
+      </a></span> <span class="next"><a href="/06interview/01_html/基础.html">
+        基础
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.d5691479.js" defer></script><script src="/assets/js/2.6ca66694.js" defer></script><script src="/assets/js/22.adfa28e6.js" defer></script><script src="/assets/js/6.1cba4931.js" defer></script>
+  </body>
+</html>
