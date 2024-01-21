@@ -20,7 +20,9 @@ const App = () => {
     <ul>
       {links.map((item) => (
         <li key={item.src}>
-          <a href={item.src}>{item.name}</a>{' '}
+          <a target="_blank" href={item.src}>
+            {item.name}
+          </a>
         </li>
       ))}
     </ul>
