@@ -16,7 +16,15 @@ const App = () => {
     { src: 'https://ndzy01.gitee.io/ndzy-admin', name: 'admin' },
     { src: 'https://ndzy01.gitee.io/ndzy-todos/', name: 'todos' },
   ];
-  return links.map((item) => <a href={item.src}>{item.name}</a>);
+  return (
+    <ul>
+      {links.map((item) => (
+        <li key={item.src}>
+          <a href={item.src}>{item.name}</a>{' '}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default App;
