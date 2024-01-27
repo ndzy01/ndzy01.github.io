@@ -15,6 +15,7 @@ const App = () => {
     { src: 'https://visualgo.net/zh', name: '算法可视化' },
     { src: 'https://ndzy01.gitee.io/ndzy-admin', name: 'admin' },
     { src: 'https://ndzy01.gitee.io/ndzy-todos/', name: 'todos' },
+    { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
   ];
   return (
     <ul>
