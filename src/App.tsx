@@ -17,11 +17,20 @@ const App = () => {
     { src: 'https://ndzy01.gitee.io/ndzy-todos/', name: 'todos' },
     { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
   ];
+
+  function getRandomColor() {
+    const red = Math.floor(Math.random() * 256); // 生成0-255的随机红色分量
+    const green = Math.floor(Math.random() * 256); // 生成0-255的随机绿色分量
+    const blue = Math.floor(Math.random() * 256); // 生成0-255的随机蓝色分量
+
+    return 'rgb(' + red + ', ' + green + ', ' + blue + ')'; // 返回rgb格式颜色
+  }
+
   return (
     <ul>
       {links.map((item) => (
         <li key={item.src}>
-          <a target="_blank" href={item.src}>
+          <a style={{ color: getRandomColor() }} target="_blank" href={item.src}>
             {item.name}
           </a>
         </li>
