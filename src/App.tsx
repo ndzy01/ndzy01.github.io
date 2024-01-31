@@ -13,8 +13,6 @@ const App = () => {
     { src: 'https://cn1.hkss-net.xyz/auth/login', name: 'vpn' },
     { src: 'https://visualgo.net/zh', name: '算法可视化' },
     { src: 'https://visualgo.net/zh', name: '算法可视化' },
-    { src: 'https://ndzy01.gitee.io/ndzy-admin', name: 'admin' },
-    { src: 'https://ndzy01.gitee.io/ndzy-todos/', name: 'todos' },
     { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
   ];
 
@@ -27,15 +25,20 @@ const App = () => {
   }
 
   return (
-    <ul>
-      {links.map((item) => (
-        <li key={item.src}>
-          <a style={{ color: getRandomColor() }} target="_blank" href={item.src}>
-            {item.name}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {links.map((item) => (
+          <li key={item.src}>
+            <a style={{ color: getRandomColor() }} target="_blank" href={item.src}>
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href="https://beian.miit.gov.cn/" target="_blank">
+        豫ICP备19035495号-1
+      </a>
+    </div>
   );
 };
 
