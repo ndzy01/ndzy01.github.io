@@ -1,4 +1,8 @@
+import { useSetState } from 'ahooks';
+import { service } from './https';
+
 const App = () => {
+  const [s, setS] = useSetState({ e1: '', e2: '', d1: '', d2: '', d3: '', d4: '' });
   const links = [
     { src: 'https://ndzy01.github.io/', name: '文档' },
     { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
@@ -16,25 +20,61 @@ const App = () => {
     { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
   ];
 
-  function getRandomColor() {
+  const getRandomColor = () => {
     const red = Math.floor(Math.random() * 256); // 生成0-255的随机红色分量
     const green = Math.floor(Math.random() * 256); // 生成0-255的随机绿色分量
     const blue = Math.floor(Math.random() * 256); // 生成0-255的随机蓝色分量
 
     return 'rgb(' + red + ', ' + green + ', ' + blue + ')'; // 返回rgb格式颜色
-  }
+  };
+
+  const handelChange = (e: any, key: any) => {
+    const obj: any = {};
+    obj[key] = e.target.value;
+    setS({ ...obj });
+  };
+
+  const funE = () => {
+    service({ url: '/e', method: 'GET', params: { e1: s.e1 } }).then((res: any) => {
+      setS({ e2: res.data });
+    });
+  };
+
+  const funD = () => {
+    service({ url: '/d', method: 'GET', params: { d1: s.d1, d2: s.d2, d3: s.d3 } }).then((res: any) => {
+      setS({ d4: res.data });
+    });
+  };
 
   return (
     <div>
       <ul>
         {links.map((item) => (
-          <li key={item.src}>
+          <li key={Math.random()}>
             <a style={{ color: getRandomColor() }} target="_blank" href={item.src}>
               {item.name}
             </a>
           </li>
         ))}
       </ul>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+        <input value={s.e1} onChange={(e) => handelChange(e, 'e1')} placeholder="" />
+        <div>
+          <button onClick={funE}>e</button>
+          <input value={s.e2} onChange={(e) => handelChange(e, 'e2')} placeholder="" />
+        </div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+        <input value={s.d1} onChange={(e) => handelChange(e, 'd1')} placeholder="" />
+        <input value={s.d2} onChange={(e) => handelChange(e, 'd2')} placeholder="" />
+        <input value={s.d3} onChange={(e) => handelChange(e, 'd3')} placeholder="" />
+        <div>
+          <button onClick={funD}>d</button>
+          <input value={s.d4} onChange={(e) => handelChange(e, 'd4')} placeholder="" />
+        </div>
+      </div>
+
       <a href="https://beian.miit.gov.cn/" target="_blank">
         豫ICP备19035495号-1
       </a>
