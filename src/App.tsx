@@ -60,15 +60,17 @@ const App = () => {
 
   return (
     <div>
-      <ul>
-        {s.links.map((item) => (
-          <li key={Math.random()}>
-            <a style={{ color: item?.color }} target="_blank" href={item.src}>
-              {item.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div style={{ height: 360, overflow: 'scroll' }}>
+        <ul>
+          {s.links.map((item) => (
+            <li key={Math.random()}>
+              <a style={{ color: item?.color }} target="_blank" href={item.src}>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div
         style={{
@@ -99,6 +101,10 @@ const App = () => {
         <button onClick={funD}>解密</button>
         <input value={s.d4} onChange={(e) => handelChange(e, 'd4')} placeholder="" />
       </div>
+
+      <br />
+      <br />
+      <br />
 
       <a href="https://beian.miit.gov.cn/" target="_blank">
         豫ICP备19035495号-1
