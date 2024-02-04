@@ -1,24 +1,32 @@
-import { useSetState } from 'ahooks';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useSetState, useMount } from 'ahooks';
 import { service } from './https';
 
 const App = () => {
-  const [s, setS] = useSetState({ e1: '', e2: '', d1: '', d2: '', d3: '', d4: '' });
-  const links = [
-    { src: 'https://ndzy01.gitee.io/ndzy-docs/', name: '文档' },
-    { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
-    { src: 'https://www.yuque.com/u22409297/aqgf01', name: '数据结构与算法' },
-    { src: 'https://labuladong.github.io/algo/di-ling-zh-bfe1b/xue-xi-sua-01220/', name: '算法小抄' },
-    { src: 'http://zh.zlibrary-china.se/', name: '图书' },
-    { src: 'https://github.com/liujuping', name: 'liujuping' },
-    { src: 'https://pythontutor.com/javascript.html#mode=edit', name: 'javascript可视化' },
-    { src: 'https://www.jsdelivr.com/package/gh/ndzy01/img?tab=stats', name: 'ndzy img 访问量统计' },
-    { src: 'https://juejin.cn/post/6844904131795091464', name: 'React源码学习' },
-    { src: 'https://pomb.us/build-your-own-react/', name: 'Build your own React' },
-    { src: 'https://cn1.hkss-net.xyz/auth/login', name: 'vpn' },
-    { src: 'https://visualgo.net/zh', name: '算法可视化' },
-    { src: 'https://visualgo.net/zh', name: '算法可视化' },
-    { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
-  ];
+  const [s, setS] = useSetState({
+    e1: '',
+    e2: '',
+    d1: '',
+    d2: '',
+    d3: '',
+    d4: '',
+    links: [
+      { src: 'https://ndzy01.gitee.io/ndzy-docs/', name: '文档', color: '' },
+      { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
+      { src: 'https://www.yuque.com/u22409297/aqgf01', name: '数据结构与算法' },
+      { src: 'https://labuladong.github.io/algo/di-ling-zh-bfe1b/xue-xi-sua-01220/', name: '算法小抄' },
+      { src: 'http://zh.zlibrary-china.se/', name: '图书' },
+      { src: 'https://github.com/liujuping', name: 'liujuping' },
+      { src: 'https://pythontutor.com/javascript.html#mode=edit', name: 'javascript可视化' },
+      { src: 'https://www.jsdelivr.com/package/gh/ndzy01/img?tab=stats', name: 'ndzy img 访问量统计' },
+      { src: 'https://juejin.cn/post/6844904131795091464', name: 'React源码学习' },
+      { src: 'https://pomb.us/build-your-own-react/', name: 'Build your own React' },
+      { src: 'https://cn1.hkss-net.xyz/auth/login', name: 'vpn' },
+      { src: 'https://visualgo.net/zh', name: '算法可视化' },
+      { src: 'https://visualgo.net/zh', name: '算法可视化' },
+      { src: 'https://ndzy01.gitee.io/ndzy-manage/', name: '管理页' },
+    ],
+  });
 
   const getRandomColor = () => {
     const red = Math.floor(Math.random() * 256); // 生成0-255的随机红色分量
@@ -46,12 +54,16 @@ const App = () => {
     });
   };
 
+  useMount(() => {
+    setS({ links: s.links.map((item) => ({ ...item, color: getRandomColor() })) });
+  });
+
   return (
     <div>
       <ul>
-        {links.map((item) => (
+        {s.links.map((item) => (
           <li key={Math.random()}>
-            <a style={{ color: getRandomColor() }} target="_blank" href={item.src}>
+            <a style={{ color: item?.color }} target="_blank" href={item.src}>
               {item.name}
             </a>
           </li>
