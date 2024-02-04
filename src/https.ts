@@ -53,18 +53,6 @@ export const service = (options: {
       data,
     })
       .then((res: { data: any; code: number; msg: string } | any) => {
-        if (res?.statusCode === 404) {
-          console.log('ndzy---log---ndzy', res, '------');
-        }
-
-        if (res.data.status === 1) {
-          console.log('ndzy---log---ndzy', res.data.msg, '------');
-        }
-
-        if (res.data.status === 0) {
-          console.log('ndzy---log---ndzy', res.data.msg, '------');
-        }
-
         resolve(res.data);
       })
       .catch(() => {

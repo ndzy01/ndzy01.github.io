@@ -4,7 +4,7 @@ import { service } from './https';
 const App = () => {
   const [s, setS] = useSetState({ e1: '', e2: '', d1: '', d2: '', d3: '', d4: '' });
   const links = [
-    { src: 'https://ndzy01.github.io/', name: '文档' },
+    { src: 'https://ndzy01.gitee.io/ndzy-docs/', name: '文档' },
     { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
     { src: 'https://www.yuque.com/u22409297/aqgf01', name: '数据结构与算法' },
     { src: 'https://labuladong.github.io/algo/di-ling-zh-bfe1b/xue-xi-sua-01220/', name: '算法小抄' },
@@ -36,13 +36,13 @@ const App = () => {
 
   const funE = () => {
     service({ url: '/e', method: 'GET', params: { e1: s.e1 } }).then((res: any) => {
-      setS({ e2: res.data });
+      setS({ e2: res.text });
     });
   };
 
   const funD = () => {
     service({ url: '/d', method: 'GET', params: { d1: s.d1, d2: s.d2, d3: s.d3 } }).then((res: any) => {
-      setS({ d4: res.data });
+      setS({ d4: res });
     });
   };
 
@@ -58,21 +58,34 @@ const App = () => {
         ))}
       </ul>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 16,
+          border: '1px dashed #666',
+          padding: 16,
+        }}
+      >
         <input value={s.e1} onChange={(e) => handelChange(e, 'e1')} placeholder="" />
-        <div>
-          <button onClick={funE}>e</button>
-          <input value={s.e2} onChange={(e) => handelChange(e, 'e2')} placeholder="" />
-        </div>
+        <button onClick={funE}>加密</button>
+        <input value={s.e2} onChange={(e) => handelChange(e, 'e2')} placeholder="" />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 16,
+          border: '1px dashed #666',
+          padding: 16,
+        }}
+      >
         <input value={s.d1} onChange={(e) => handelChange(e, 'd1')} placeholder="" />
         <input value={s.d2} onChange={(e) => handelChange(e, 'd2')} placeholder="" />
         <input value={s.d3} onChange={(e) => handelChange(e, 'd3')} placeholder="" />
-        <div>
-          <button onClick={funD}>d</button>
-          <input value={s.d4} onChange={(e) => handelChange(e, 'd4')} placeholder="" />
-        </div>
+        <button onClick={funD}>解密</button>
+        <input value={s.d4} onChange={(e) => handelChange(e, 'd4')} placeholder="" />
       </div>
 
       <a href="https://beian.miit.gov.cn/" target="_blank">
