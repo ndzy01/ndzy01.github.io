@@ -104,7 +104,6 @@ const App = () => {
 
       <br />
       <br />
-      <br />
 
       <a href="https://beian.miit.gov.cn/" target="_blank">
         豫ICP备19035495号-1
