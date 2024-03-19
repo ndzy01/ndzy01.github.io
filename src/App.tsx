@@ -11,7 +11,8 @@ const App = () => {
     d3: '',
     d4: '',
     links: [
-      { src: 'https://www.ndzy01.com/ndzy-docs', name: '文档', color: '' },
+      { src: 'https://www.ndzy01.com/ndzy-docs', name: '文档' },
+      { src: 'https://www.ndzy01.com/ndzy-project/', name: 'ndzy-project' },
       { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
       { src: 'https://www.yuque.com/u22409297/aqgf01', name: '数据结构与算法' },
       { src: 'https://labuladong.github.io/algo/di-ling-zh-bfe1b/xue-xi-sua-01220/', name: '算法小抄' },
