@@ -12,7 +12,7 @@ const App = () => {
     d4: '',
     links: [
       { src: 'https://www.ndzy01.com/ndzy-docs', name: '文档', color: '' },
-      { src: 'https://www.ndzy01.com/ndzy-articles', name: '在线文档', color: '' },
+      { src: 'https://www.ndzy01.com/ndzy-app', name: '在线文档', color: '' },
       { src: 'https://www.ndzy01.com/ndzy-project/', name: 'ndzy-project' },
       { src: 'https://www.yuque.com/u22409297/fqv2ol', name: 'blog' },
       { src: 'https://www.yuque.com/u22409297/aqgf01', name: '数据结构与算法' },
