@@ -22,7 +22,7 @@ const App = () => {
     <div style={{ padding: '1rem' }}>
       <ul>
         {links.map((item) => (
-          <li style={{ margin: '0.5rem 0' }} key={Math.random()}>
+          <li style={{ margin: '1rem 0' }} key={Math.random()}>
             <a target="_blank" href={item.src}>
               {item.name}
             </a>
