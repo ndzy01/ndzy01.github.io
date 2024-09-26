@@ -1,14 +1,8 @@
-import {Auth0Provider, useAuth0} from "@auth0/auth0-react";
+import {Auth0Provider} from "@auth0/auth0-react";
 import Login from "./Login";
 import './index.css'
 
 const App = () => {
-  const {isAuthenticated, isLoading} = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-
   const links = [
     {src: 'https://www.ndzy01.com/ndzy-docs', name: '文档'},
     {src: 'https://www.ndzy01.com/ndzy-antd', name: '在线文档'},
@@ -37,17 +31,18 @@ const App = () => {
       }}
     >
       <Login/>
-      {isAuthenticated && <div style={{padding: '1rem'}}>
-          <ul>
-            {links.map((item) => (
-              <li style={{margin: '1rem 0'}} key={Math.random()}>
-                <a target="_blank" href={item.src}>
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-      </div>}
+
+      <div style={{padding: '1rem'}}>
+        <ul>
+          {links.map((item) => (
+            <li style={{margin: '1rem 0'}} key={Math.random()}>
+              <a target="_blank" href={item.src}>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <a href="https://beian.miit.gov.cn/" target="_blank">
         豫ICP备19035495号-1
