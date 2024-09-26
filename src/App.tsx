@@ -3,8 +3,11 @@ import Login from "./Login";
 import './index.css'
 
 const App = () => {
-  const {isAuthenticated} = useAuth0();
+  const {isAuthenticated, isLoading} = useAuth0();
 
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   const links = [
     {src: 'https://www.ndzy01.com/ndzy-docs', name: '文档'},
