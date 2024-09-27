@@ -1,4 +1,5 @@
 import {useAuth0} from '@auth0/auth0-react';
+import {useEffect} from "react";
 
 const LoginButton = () => {
   const {loginWithRedirect} = useAuth0();
@@ -22,6 +23,10 @@ const LogoutButton = () => {
 
 const Login = () => {
   const {user, isAuthenticated, isLoading} = useAuth0();
+
+  useEffect(() => {
+    console.log(user)
+  }, [user]);
 
   if (isLoading) {
     return <div>Loading ...</div>;
