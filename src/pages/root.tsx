@@ -17,7 +17,10 @@ const items: MenuItem[] = [
   {
     key: "01",
     label: "文章",
-    children: [{ key: "/article", label: "首页" }],
+    children: [
+      { key: "/article", label: "首页" },
+      { key: "/article/add", label: "新增文章" },
+    ],
   },
 ]
 
