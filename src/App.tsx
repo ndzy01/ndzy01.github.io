@@ -49,6 +49,29 @@ const router = createHashRouter([
 ])
 
 const App = () => {
+  ;(function (history: any) {
+    var pushState = history.pushState
+    var replaceState = history.replaceState
+
+    history.pushState = function (state: any) {
+      if (typeof history.onpushstate == "function") {
+        history.onpushstate({ state: state })
+      }
+      // 触发一个事件
+      window.dispatchEvent(new Event("routerchange"))
+      return pushState.apply(history, arguments)
+    }
+
+    history.replaceState = function (state: any) {
+      if (typeof history.onreplacestate == "function") {
+        history.onreplacestate({ state: state })
+      }
+      // 触发一个事件
+      window.dispatchEvent(new Event("routerchange"))
+      return replaceState.apply(history, arguments)
+    }
+  })(window.history)
+
   return (
     <StoreApp>
       <RouterProvider router={router} />

@@ -35,8 +35,8 @@ service.interceptors.response.use(
   (error) => {
     if (error?.response?.data?.statusCode === 401) {
       message.error({ content: "登录失效，请重新登录" }).then(() => {
-        if (window.location.pathname !== "/login") {
-          window.location.href = "/login"
+        if (window.location.hash !== "#/login") {
+          window.location.href = `${window.location.origin}/#/login`
         }
       })
 

@@ -1,5 +1,3 @@
-import { useInterval } from "ahooks"
-
 import React, { useEffect, useState } from "react"
 
 import { createContext } from "./createContext"
@@ -135,22 +133,18 @@ const App = (props: { children: React.ReactNode }) => {
   }
 
   useEffect(() => {
-    if (
-      window.location.pathname !== "/login" &&
-      window.location.pathname !== "/"
-    ) {
-      auth().then()
-    }
-  }, [])
+    window.addEventListener("popstate", function () {
+      //
+    })
 
-  useInterval(() => {
-    if (
-      window.location.pathname !== "/login" &&
-      window.location.pathname !== "/"
-    ) {
+    window.addEventListener("routerchange", function () {
       auth().then()
-    }
-  }, 60 * 1000)
+    })
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      //
+    })
+  }, [])
 
   return (
     <NdzyProvider
