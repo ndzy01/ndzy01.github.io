@@ -32,10 +32,10 @@ const Root = () => {
           <h1>欢迎 {data?.name}</h1>
           <div className="user-info">
             <a
-              href="/login"
               onClick={() => {
                 sessionStorage.setItem("token", "")
                 sessionStorage.setItem("name", "")
+                navigate("/login")
                 window.location.reload()
               }}
             >

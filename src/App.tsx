@@ -1,6 +1,6 @@
 import "./App.css"
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createHashRouter } from "react-router-dom"
 
 import Article from "./pages/article"
 import ArticleRoot from "./pages/article-root"
@@ -10,7 +10,7 @@ import Login from "./pages/login"
 import Root, { loginLoader } from "./pages/root"
 import StoreApp from "./store/index"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
