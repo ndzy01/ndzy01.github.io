@@ -43,6 +43,10 @@ const Home = () => {
           ))}
         </ul>
       </div>
+
+      <a href="https://beian.miit.gov.cn/" target="_blank">
+        豫ICP备19035495号-1
+      </a>
     </>
   )
 }
