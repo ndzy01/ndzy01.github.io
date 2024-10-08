@@ -7,10 +7,10 @@ import { v4 as uuidv4 } from "uuid"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-import ITree from "../../components/ITree.tsx"
+import ITree from "../../components/ITree"
 import { useStore } from "../../store"
 
-const scrollElement = document.documentElement
+const scrollElement = document.getElementById("ndzy-content")
 export const ViewArticle = () => {
   const { id: aId } = useParams()
   const navigate = useNavigate()
@@ -41,9 +41,9 @@ export const ViewArticle = () => {
   return store.loading ? (
     <Spin size="large" />
   ) : (
-    <div>
+    <div id={"article-view"}>
       <MdPreview editorId={id} modelValue={store.article?.content} />
-      <MdCatalog editorId={id} scrollElement={scrollElement} />
+      <MdCatalog editorId={id} scrollElement={scrollElement!} />
       <FloatButton.Group shape="circle" style={{ insetInlineEnd: 24, top: 24 }}>
         <FloatButton icon={<MenuFoldOutlined />} onClick={showDrawer} />
         <FloatButton icon={<MenuOutlined />} onClick={showDrawer1} />
@@ -52,7 +52,7 @@ export const ViewArticle = () => {
         <ITree />
       </Drawer>
       <Drawer title="文章目录" onClose={onClose} open={open} zIndex={999999999}>
-        <MdCatalog editorId={id} scrollElement={scrollElement} />
+        <MdCatalog editorId={id} scrollElement={scrollElement!} />
         <div style={{ display: "none" }}>
           <MdPreview editorId={id} modelValue={store.article?.content} />
         </div>

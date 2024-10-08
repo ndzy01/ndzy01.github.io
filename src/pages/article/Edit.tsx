@@ -3,7 +3,7 @@ import { Button, Form, Input, Spin } from "antd"
 
 import { useNavigate, useParams } from "react-router-dom"
 
-import { EditorMd } from "../../components/Md.tsx"
+import { EditorMd } from "../../components/Md"
 import { useStore } from "../../store"
 
 const EditArticle = () => {

@@ -4,10 +4,10 @@ import { RouterProvider, createHashRouter } from "react-router-dom"
 
 import Article from "./pages/article"
 import ArticleRoot from "./pages/article-root"
-import AddArticle from "./pages/article/Add.tsx"
-import EditArticle from "./pages/article/Edit.tsx"
-import SortArticle from "./pages/article/Sort.tsx"
-import { ViewArticle } from "./pages/article/View.tsx"
+import AddArticle from "./pages/article/Add"
+import EditArticle from "./pages/article/Edit"
+import SortArticle from "./pages/article/Sort"
+import { ViewArticle } from "./pages/article/View"
 import ErrorPage from "./pages/error"
 import Home from "./pages/home"
 import Login from "./pages/login"
@@ -38,7 +38,7 @@ const router = createHashRouter([
             // loader: loginLoader,
           },
           {
-            path: "/article/add",
+            path: "/article/add/:id",
             element: <AddArticle />,
             // loader: loginLoader,
           },

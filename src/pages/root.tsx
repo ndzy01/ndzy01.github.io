@@ -11,17 +11,18 @@ type MenuItem = Required<MenuProps>["items"][number]
 
 const items: MenuItem[] = [
   { key: "/", label: "首页" },
-  {
-    type: "divider",
-  },
-  {
-    key: "01",
-    label: "文章",
-    children: [
-      { key: "/article", label: "首页" },
-      { key: "/article/add", label: "新增文章" },
-    ],
-  },
+  // {
+  //   type: "divider",
+  // },
+  // {
+  //   key: "01",
+  //   label: "文章",
+  //   children: [
+  //     { key: "/article", label: "首页" },
+  //     { key: "/article/add", label: "新增文章" },
+  //   ],
+  // },
+  { key: "/article", label: "文章" },
 ]
 
 const Root = () => {
@@ -57,7 +58,7 @@ const Root = () => {
         />
       </aside>
       <main className="main-content">
-        <section className="content">
+        <section className="content" id="ndzy-content">
           <Outlet />
         </section>
       </main>

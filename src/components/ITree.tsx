@@ -3,6 +3,7 @@ import {
   DragOutlined,
   EditOutlined,
   EyeOutlined,
+  FileAddOutlined,
 } from "@ant-design/icons"
 import { Popconfirm, Space, Tree, TreeProps } from "antd"
 
@@ -55,6 +56,12 @@ const ITree = () => {
             <EditOutlined
               onClick={() => {
                 navigate(`/article/edit/${d.key}`)
+              }}
+            />
+
+            <FileAddOutlined
+              onClick={() => {
+                navigate(`/article/add/${d.key}`)
               }}
             />
 

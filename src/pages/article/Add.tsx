@@ -1,13 +1,14 @@
 import { Button, Form, Input, Spin, TreeSelect } from "antd"
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
-import { EditorMd } from "../../components/Md.tsx"
+import { EditorMd } from "../../components/Md"
 import { useStore } from "../../store"
 
 const AddArticle = () => {
   const navigate = useNavigate()
   const store = useStore()
+  const { id: pId } = useParams()
 
   return store.loading ? (
     <Spin size="large" />
@@ -20,7 +21,7 @@ const AddArticle = () => {
             ...v,
           })
           .then(() => {
-            navigate("/")
+            navigate("/article")
           })
       }}
     >
@@ -33,6 +34,7 @@ const AddArticle = () => {
           allowClear
           treeDefaultExpandAll
           treeData={store.articles}
+          defaultValue={pId === "0" ? undefined : pId}
         />
       </Form.Item>
 
