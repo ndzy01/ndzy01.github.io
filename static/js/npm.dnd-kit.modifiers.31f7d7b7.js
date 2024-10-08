@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkndzy=self.webpackChunkndzy||[]).push([["7693"],{2339:function(n,e,t){t.d(e,{DL:function(){return u}}),t(4285);let u=n=>{let{transform:e}=n;return{...e,x:0}}}}]);
