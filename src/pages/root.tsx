@@ -39,7 +39,7 @@ const Root = () => {
         style={{ display: collapsed ? "none" : "block" }}
       >
         <header className="header">
-          <h1>欢迎 {data?.name}</h1>
+          <h1>欢迎 {data?.name || ""}</h1>
           <div className="user-info">
             <a
               onClick={() => {

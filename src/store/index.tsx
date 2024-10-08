@@ -133,6 +133,8 @@ const App = (props: { children: React.ReactNode }) => {
   }
 
   useEffect(() => {
+    auth().then()
+
     window.addEventListener("popstate", function () {
       //
     })
