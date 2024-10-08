@@ -25,10 +25,6 @@ const Animation = ({
       "2d"
     ) as CanvasRenderingContext2D
 
-    // 设置离屏Canvas尺寸与主Canvas相同
-    offscreenCanvas.width = canvas.width
-    offscreenCanvas.height = canvas.height
-
     // 预加载所有帧图片
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image()
@@ -54,7 +50,7 @@ const Animation = ({
       const tl = gsap.timeline({ repeat: -1 }) // 无限循环
 
       images.forEach((_image, index) => {
-        tl.to({}, { duration: 0.05, onUpdate: () => drawFrame(index) })
+        tl.to({}, { duration: 0.02, onUpdate: () => drawFrame(index) })
       })
     }
 
@@ -86,7 +82,10 @@ const Animation = ({
       <canvas ref={canvasRef} style={{ width: 400, height: 300, ...style }} />
 
       {/* 创建离屏Canvas，隐藏它 */}
-      <canvas ref={offscreenCanvasRef} style={{ display: "none" }} />
+      <canvas
+        ref={offscreenCanvasRef}
+        style={{ display: "none", width: 400, height: 300, ...style }}
+      />
     </>
   )
 }
