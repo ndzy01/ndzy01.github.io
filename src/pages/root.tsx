@@ -1,6 +1,8 @@
-import type { MenuProps } from "antd"
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons"
+import { FloatButton, MenuProps } from "antd"
 import { Menu } from "antd"
 
+import React, { useState } from "react"
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom"
 
 export async function loginLoader() {
@@ -28,10 +30,14 @@ const items: MenuItem[] = [
 const Root = () => {
   const data: any = useLoaderData()
   const navigate = useNavigate()
+  const [collapsed, setCollapsed] = useState(false)
 
   return (
     <div className="container">
-      <aside className="sidebar">
+      <aside
+        className="sidebar"
+        style={{ display: collapsed ? "none" : "block" }}
+      >
         <header className="header">
           <h1>欢迎 {data?.name}</h1>
           <div className="user-info">
@@ -62,6 +68,13 @@ const Root = () => {
           <Outlet />
         </section>
       </main>
+
+      <FloatButton.Group shape="circle">
+        <FloatButton
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          onClick={() => setCollapsed(!collapsed)}
+        />
+      </FloatButton.Group>
     </div>
   )
 }
