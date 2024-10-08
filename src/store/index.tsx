@@ -41,7 +41,7 @@ const App = (props: { children: React.ReactNode }) => {
 
   const auth = async () => {
     setLoading(true)
-    const data: any = await service({ url: "/", method: "GET" })
+    const data: any = await service({ url: "/auth", method: "GET" })
 
     if (data) {
       sessionStorage.setItem("name", data.data.name)
@@ -141,7 +141,7 @@ const App = (props: { children: React.ReactNode }) => {
       auth().then()
     })
 
-    document.addEventListener("DOMContentLoaded", (event) => {
+    document.addEventListener("DOMContentLoaded", () => {
       //
     })
   }, [])
