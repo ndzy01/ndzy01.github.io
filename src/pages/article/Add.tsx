@@ -14,7 +14,11 @@ const AddArticle = () => {
     <Spin size="large" />
   ) : (
     <Form
-      initialValues={{ title: "", content: "" }}
+      initialValues={{
+        title: "",
+        content: "",
+        parentId: pId === "0" ? undefined : pId,
+      }}
       onFinish={(v) => {
         store.api.article
           .create({
@@ -34,7 +38,6 @@ const AddArticle = () => {
           allowClear
           treeDefaultExpandAll
           treeData={store.articles}
-          defaultValue={pId === "0" ? undefined : pId}
         />
       </Form.Item>
 
