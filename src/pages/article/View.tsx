@@ -1,4 +1,4 @@
-import { MenuFoldOutlined, MenuOutlined } from "@ant-design/icons"
+import { BarsOutlined, MenuOutlined } from "@ant-design/icons"
 import { Drawer, FloatButton, Spin } from "antd"
 import { MdCatalog, MdPreview } from "md-editor-rt"
 import "md-editor-rt/lib/style.css"
@@ -49,7 +49,7 @@ export const ViewArticle = () => {
       <MdPreview editorId={id} modelValue={store.article?.content} />
       <MdCatalog editorId={id} scrollElement={scrollRef.current!} />
       <FloatButton.Group shape="circle" style={{ insetInlineEnd: 24, top: 24 }}>
-        <FloatButton icon={<MenuFoldOutlined />} onClick={showDrawer} />
+        <FloatButton icon={<BarsOutlined />} onClick={showDrawer} />
         <FloatButton icon={<MenuOutlined />} onClick={showDrawer1} />
       </FloatButton.Group>
       <Drawer title="目录" onClose={onClose1} open={open1} zIndex={999999999}>
