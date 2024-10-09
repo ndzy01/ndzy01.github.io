@@ -39,6 +39,19 @@ const Root = () => {
           className="sidebar"
           style={{ display: collapsed ? "none" : "block" }}
         >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: 16,
+            }}
+          >
+            <Button
+              icon={<MenuFoldOutlined />}
+              onClick={() => setCollapsed(true)}
+            />
+          </div>
+
           <header className="header">
             <h1>欢迎 {data?.name || ""}</h1>
             <div className="user-info">
@@ -63,21 +76,16 @@ const Root = () => {
             mode="inline"
             items={items}
           />
-          <Button
-            style={{ marginTop: 16 }}
-            icon={<MenuFoldOutlined />}
-            onClick={() => setCollapsed(true)}
-          />
         </aside>
       ) : (
         <Button
-          style={{ margin: 8 }}
+          style={{ position: "fixed", left: 16, top: 16 }}
           icon={<MenuUnfoldOutlined />}
           onClick={() => setCollapsed(false)}
         />
       )}
 
-      <main className="main-content">
+      <main className="main-content" style={{ overflow: "auto" }}>
         <section className="content" id="ndzy-content">
           <Outlet />
         </section>
