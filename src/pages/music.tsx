@@ -55,7 +55,7 @@ const Music = () => {
       <div style={{ paddingBottom: 100 }}>
         <Space wrap size={32}>
           {store.songs.map((item) => (
-            <div style={{ width: 200 }}>
+            <div style={{ width: 200 }} key={item.id}>
               <Image src={item.img} style={{ width: 120, height: 160 }} />
               <Button
                 type="link"
