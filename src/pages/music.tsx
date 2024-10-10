@@ -10,7 +10,7 @@ const Music = () => {
 
   useEffect(() => {
     store.api.music.query()
-  })
+  }, [])
 
   return (
     <div>
