@@ -17,6 +17,11 @@ const NdzyMusic = () => {
 
   return (
     <>
+      {song && (
+        <div>
+          正在播放：<span style={{ color: "pink" }}>{song.name}</span>
+        </div>
+      )}
       <div style={{ paddingBottom: 100 }}>
         <Space wrap size={32}>
           {ndzySongs.map((item) => (
