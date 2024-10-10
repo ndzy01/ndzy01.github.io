@@ -28,7 +28,7 @@ interface NdzyContextType {
       updateOrder: (data: { id: string; order: number }[]) => Promise<void>
     }
     music: {
-      login: () => Promise<void>
+      login: (v: any) => Promise<void>
       query: () => Promise<void>
       url: (id: string) => Promise<void>
     }
@@ -142,7 +142,12 @@ const App = (props: { children: React.ReactNode }) => {
   }
 
   //
-  const musicLogin = async () => {}
+  const musicLogin = async (values: any) => {
+    await musicService("/login/cellphone", {
+      method: "GET",
+      params: { ...values },
+    })
+  }
 
   const musicQuery = async () => {
     const data = await musicService("/playlist/detail", {

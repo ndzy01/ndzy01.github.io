@@ -1,7 +1,6 @@
 import { Button, ConfigProvider, Form, type FormProps, Input } from "antd"
 import zhCN from "antd/locale/zh_CN"
 
-import * as React from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useStore } from "../store"
