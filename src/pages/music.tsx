@@ -1,3 +1,4 @@
+import { useDeepCompareEffect } from "ahooks"
 import {
   Button,
   ConfigProvider,
@@ -22,17 +23,30 @@ const Music = () => {
   const [groupId, setGroupId] = useState("")
 
   useEffect(() => {
-    store.api.music.group().then(() => {
+    store.api.music.group()
+  }, [])
+
+  useDeepCompareEffect(() => {
+    if (store.songGroup.length > 0) {
       setGroupId(store.songGroup[0].id)
       store.api.music.query(store.songGroup[0].id)
-    })
-  }, [])
+    }
+  }, [store.songGroup])
 
   return store.loading ? (
     <Spin size="large" />
   ) : (
     <>
-      <Space>
+      <Space style={{ marginBottom: 16 }}>
+        <Button
+          type="primary"
+          onClick={() => {
+            setOpen(true)
+          }}
+        >
+          登录
+        </Button>
+
         <Select
           style={{ width: 120 }}
           value={groupId}
@@ -47,7 +61,6 @@ const Music = () => {
         />
 
         <Button
-          style={{ marginBottom: 16 }}
           onClick={() => {
             store.api.music.cloud()
           }}
@@ -55,14 +68,7 @@ const Music = () => {
           云盘
         </Button>
 
-        <Button
-          style={{ marginBottom: 16 }}
-          onClick={() => {
-            setOpen(true)
-          }}
-        >
-          登录
-        </Button>
+        {store.song && store.song.name}
       </Space>
 
       <div style={{ paddingBottom: 100 }}>
@@ -73,7 +79,7 @@ const Music = () => {
               <Button
                 type="link"
                 onClick={() => {
-                  store.api.music.url(item.id)
+                  store.api.music.song(item.id)
                 }}
               >
                 {item.name}
@@ -82,7 +88,7 @@ const Music = () => {
           ))}
         </Space>
 
-        {store.songUrl && (
+        {store.song && (
           <ReactPlayer
             style={{
               position: "fixed",
@@ -92,11 +98,11 @@ const Music = () => {
             }}
             playing
             height={60}
-            url={store.songUrl}
+            url={store.song.url}
             controls
             onEnded={() => {
               const randomIndex = Math.floor(Math.random() * store.songs.length)
-              store.api.music.url(store.songs[randomIndex].id)
+              store.api.music.s(store.songs[randomIndex].id)
             }}
           />
         )}

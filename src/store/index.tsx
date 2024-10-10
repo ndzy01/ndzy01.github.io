@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react"
+import { message } from "antd"
+
+import React, { useState } from "react"
 
 import { createContext } from "./createContext"
 
@@ -13,7 +15,7 @@ interface NdzyContextType {
   article?: Tree
   songGroup: any[]
   songs: any[]
-  songUrl?: string
+  song?: any
   api: {
     login: {
       auth: () => Promise<any>
@@ -32,7 +34,7 @@ interface NdzyContextType {
       login: (v: any) => Promise<void>
       query: (id: string) => Promise<void>
       cloud: () => Promise<void>
-      url: (id: string) => Promise<void>
+      song: (id: string) => Promise<void>
       group: () => Promise<void>
     }
   }
@@ -49,7 +51,7 @@ const App = (props: { children: React.ReactNode }) => {
   const [articles, setArticles] = useState<Tree[]>([])
   const [songs, setSongs] = useState<any[]>([])
   const [songGroup, setSongGroup] = useState<any[]>([])
-  const [songUrl, setSongUrl] = useState("")
+  const [song, setSong] = useState<any>()
   const [article, setArticle] = useState()
 
   const auth = async () => {
@@ -153,6 +155,7 @@ const App = (props: { children: React.ReactNode }) => {
         method: "GET",
         params: { ...values },
       })
+      await musicGroup()
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -163,18 +166,26 @@ const App = (props: { children: React.ReactNode }) => {
   const musicGroup = async () => {
     setLoading(true)
     try {
-      const data1 = await musicService("/user/account")
-      const data = await musicService("/user/playlist", {
-        method: "GET",
-        params: { uid: data1.data.account.id },
-      })
+      const data2 = await musicService("/login/status")
+      if (data2.data.data.account) {
+        const data1 = await musicService("/user/account")
+        const data = await musicService("/user/playlist", {
+          method: "GET",
+          params: { uid: data1.data.account.id },
+        })
+        setLoading(false)
+        setSongGroup(
+          data.data.playlist.map((item: any) => ({
+            id: item.id,
+            name: item.name,
+          }))
+        )
+
+        return
+      }
+
       setLoading(false)
-      setSongGroup(
-        data.data.playlist.map((item: any) => ({
-          id: item.id,
-          name: item.name,
-        }))
-      )
+      message.info("请先登录")
     } catch (error) {
       setLoading(false)
     }
@@ -235,7 +246,7 @@ const App = (props: { children: React.ReactNode }) => {
     }
   }
 
-  const musicSongUrl = async (id: string) => {
+  const musicSong = async (id: string) => {
     setLoading(true)
     try {
       const data2 = await musicService("/song/url/v1", {
@@ -243,9 +254,12 @@ const App = (props: { children: React.ReactNode }) => {
         params: { id, level: "lossless" },
       })
 
-      const song = data2.data.data[0]
+      if (data2.data.data && data2.data.data.lenght > 0) {
+        const song = data2.data.data[0]
+        setSong(song)
+      }
+
       setLoading(false)
-      setSongUrl(song.url)
     } catch (error) {
       setLoading(false)
     }
@@ -259,7 +273,7 @@ const App = (props: { children: React.ReactNode }) => {
       article={article}
       songs={songs}
       songGroup={songGroup}
-      songUrl={songUrl}
+      song={song}
       api={{
         login: { auth, login },
         article: {
@@ -274,7 +288,7 @@ const App = (props: { children: React.ReactNode }) => {
         music: {
           login: musicLogin,
           query: musicQuery,
-          url: musicSongUrl,
+          song: musicSong,
           cloud: musicCloud,
           group: musicGroup,
         },
