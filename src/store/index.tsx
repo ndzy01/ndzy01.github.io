@@ -30,6 +30,7 @@ interface NdzyContextType {
     music: {
       login: (v: any) => Promise<void>
       query: () => Promise<void>
+      cloud: () => Promise<void>
       url: (id: string) => Promise<void>
     }
   }
@@ -174,6 +175,22 @@ const App = (props: { children: React.ReactNode }) => {
     setSongs(list)
   }
 
+  const musicCloud = async () => {
+    const data = await musicService("/user/cloud", {
+      method: "GET",
+      params: { limit: 10000 },
+    })
+
+    const list = data.data.data.map(
+      ({ songId, songName, simpleSong }: any) => ({
+        id: songId,
+        name: songName,
+        img: simpleSong.al.picUrl,
+      })
+    )
+    setSongs(list)
+  }
+
   const musicSongUrl = async (id: string) => {
     const data2 = await musicService("/song/url/v1", {
       method: "GET",
@@ -223,6 +240,7 @@ const App = (props: { children: React.ReactNode }) => {
           login: musicLogin,
           query: musicQuery,
           url: musicSongUrl,
+          cloud: musicCloud,
         },
       }}
     >

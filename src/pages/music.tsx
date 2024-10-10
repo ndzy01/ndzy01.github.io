@@ -11,7 +11,7 @@ const Music = () => {
   const store = useStore()
 
   useEffect(() => {
-    store.api.music.query()
+    store.api.music.cloud()
   }, [])
 
   return (
@@ -20,11 +20,21 @@ const Music = () => {
         <Button
           style={{ marginBottom: 16 }}
           onClick={() => {
+            store.api.music.cloud()
+          }}
+        >
+          云盘
+        </Button>
+
+        <Button
+          style={{ marginBottom: 16 }}
+          onClick={() => {
             store.api.music.query()
           }}
         >
-          刷新
+          喜欢
         </Button>
+
         <Button
           style={{ marginBottom: 16 }}
           onClick={() => {
@@ -64,6 +74,10 @@ const Music = () => {
             height={60}
             url={store.songUrl}
             controls
+            onEnded={() => {
+              const randomIndex = Math.floor(Math.random() * store.songs.length)
+              store.api.music.url(store.songs[randomIndex].id)
+            }}
           />
         )}
       </div>
