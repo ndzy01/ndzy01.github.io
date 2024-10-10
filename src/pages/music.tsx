@@ -19,10 +19,13 @@ import { useStore } from "../store"
 const Music = () => {
   const [open, setOpen] = useState(false)
   const store = useStore()
+  const [groupId, setGroupId] = useState("")
 
   useEffect(() => {
-    store.api.music.cloud()
-    store.api.music.group()
+    store.api.music.group().then(() => {
+      setGroupId(store.songGroup[0].id)
+      store.api.music.query(store.songGroup[0].id)
+    })
   }, [])
 
   return store.loading ? (
@@ -30,6 +33,19 @@ const Music = () => {
   ) : (
     <>
       <Space>
+        <Select
+          style={{ width: 120 }}
+          value={groupId}
+          onChange={(v) => {
+            setGroupId(v)
+            store.api.music.query(v)
+          }}
+          options={store.songGroup.map((item) => ({
+            label: item.name,
+            value: item.id,
+          }))}
+        />
+
         <Button
           style={{ marginBottom: 16 }}
           onClick={() => {
@@ -38,17 +54,6 @@ const Music = () => {
         >
           云盘
         </Button>
-
-        <Select
-          style={{ width: 120 }}
-          onChange={(v) => {
-            store.api.music.query(v)
-          }}
-          options={store.songGroup.map((item) => ({
-            label: item.name,
-            value: item.id,
-          }))}
-        />
 
         <Button
           style={{ marginBottom: 16 }}

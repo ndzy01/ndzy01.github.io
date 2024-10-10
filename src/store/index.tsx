@@ -251,22 +251,6 @@ const App = (props: { children: React.ReactNode }) => {
     }
   }
 
-  useEffect(() => {
-    auth().then()
-
-    window.addEventListener("popstate", function () {
-      //
-    })
-
-    window.addEventListener("routerchange", function () {
-      auth().then()
-    })
-
-    document.addEventListener("DOMContentLoaded", () => {
-      //
-    })
-  }, [])
-
   return (
     <NdzyProvider
       loading={loading}
