@@ -253,9 +253,17 @@ const App = (props: { children: React.ReactNode }) => {
         method: "GET",
         params: { id, level: "lossless" },
       })
+      const data1 = await musicService("/song/detail", {
+        method: "GET",
+        params: { ids: [id].toString() },
+      })
 
       if (data2.data.data && data2.data.data.length > 0) {
-        setSong(data2.data.data[0])
+        setSong({
+          ...data2.data.data[0],
+          name: data1.data.songs[0].name,
+          picUrl: data1.data.songs[0].al.picUrl,
+        })
       }
 
       setLoading(false)

@@ -88,22 +88,36 @@ const Music = () => {
         </Space>
 
         {store.song && (
-          <ReactPlayer
+          <div
             style={{
               position: "fixed",
               bottom: 32,
               left: "50%",
               transform: "translateX(-50%)",
+              display: "flex",
+              alignItems: "center",
             }}
-            playing
-            height={60}
-            url={store.song.url}
-            controls
-            onEnded={() => {
-              const randomIndex = Math.floor(Math.random() * store.songs.length)
-              store.api.music.song(store.songs[randomIndex].id)
-            }}
-          />
+          >
+            <div>
+              <Image
+                src={store.song.picUrl}
+                style={{ width: 80, height: 60 }}
+              />
+              {store.song && store.song.name}
+            </div>
+            <ReactPlayer
+              playing
+              height={60}
+              url={store.song.url}
+              controls
+              onEnded={() => {
+                const randomIndex = Math.floor(
+                  Math.random() * store.songs.length
+                )
+                store.api.music.song(store.songs[randomIndex].id)
+              }}
+            />
+          </div>
         )}
       </div>
 
