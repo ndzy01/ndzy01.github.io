@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { createContext } from "./createContext"
 
-import { Tree, loop, service } from "../utils"
+import { Tree, loop, musicService, service } from "../utils"
 
 const NDZY_NAME = "NDZY"
 
@@ -11,6 +11,8 @@ interface NdzyContextType {
   setLoading: (v: boolean) => void
   articles: Tree[]
   article?: Tree
+  songs: any[]
+  songUrl?: string
   api: {
     login: {
       auth: () => Promise<any>
@@ -25,6 +27,11 @@ interface NdzyContextType {
       initOrderData: (id: string) => Promise<Tree[]>
       updateOrder: (data: { id: string; order: number }[]) => Promise<void>
     }
+    music: {
+      login: () => Promise<void>
+      query: () => Promise<void>
+      url: (id: string) => Promise<void>
+    }
   }
 }
 
@@ -37,6 +44,8 @@ const App = (props: { children: React.ReactNode }) => {
 
   const [loading, setLoading] = useState(false)
   const [articles, setArticles] = useState<Tree[]>([])
+  const [songs, setSongs] = useState<any[]>([])
+  const [songUrl, setSongUrl] = useState("")
   const [article, setArticle] = useState()
 
   const auth = async () => {
@@ -132,6 +141,44 @@ const App = (props: { children: React.ReactNode }) => {
     setLoading(false)
   }
 
+  //
+  const musicLogin = async () => {}
+
+  const musicQuery = async () => {
+    const data = await musicService("/playlist/detail", {
+      method: "GET",
+      params: { id: 797584768 },
+    })
+
+    const ids: any[] = data.data.playlist.trackIds.map((item: any) => item.id)
+
+    const data1 = await musicService("/song/detail", {
+      method: "GET",
+      params: { ids: ids.toString() },
+    })
+
+    const list = data1.data.songs.map(({ id, name, al, ar, mv, dt }: any) => ({
+      id,
+      name,
+      artists: ar,
+      duration: dt,
+      mvId: mv,
+      albumName: al.name,
+      img: al.picUrl,
+    }))
+    setSongs(list)
+  }
+
+  const musicSongUrl = async (id: string) => {
+    const data2 = await musicService("/song/url/v1", {
+      method: "GET",
+      params: { id, level: "lossless" },
+    })
+
+    const song = data2.data.data[0]
+    setSongUrl(song.url)
+  }
+
   useEffect(() => {
     auth().then()
 
@@ -154,6 +201,8 @@ const App = (props: { children: React.ReactNode }) => {
       setLoading={setLoading}
       articles={articles}
       article={article}
+      songs={songs}
+      songUrl={songUrl}
       api={{
         login: { auth, login },
         article: {
@@ -164,6 +213,11 @@ const App = (props: { children: React.ReactNode }) => {
           create,
           initOrderData,
           updateOrder,
+        },
+        music: {
+          login: musicLogin,
+          query: musicQuery,
+          url: musicSongUrl,
         },
       }}
     >

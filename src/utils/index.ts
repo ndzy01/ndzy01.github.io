@@ -7,6 +7,12 @@ export const service = axios.create({
   withCredentials: false, // 跨域请求是否需要携带 cookie
 })
 
+export const musicService = axios.create({
+  baseURL: "https://music-api-five-blush.vercel.app", // 基础URL
+  timeout: 60000, // 请求超时设置
+  withCredentials: false, // 跨域请求是否需要携带 cookie
+})
+
 service.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("token")

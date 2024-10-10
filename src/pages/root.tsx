@@ -1,9 +1,12 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons"
-import { Button, MenuProps } from "antd"
+import { Button, Image, MenuProps, Space } from "antd"
 import { Menu } from "antd"
 
-import React, { useState } from "react"
+import { useEffect, useState } from "react"
+import ReactPlayer from "react-player"
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom"
+
+import { useStore } from "../store"
 
 export async function loginLoader() {
   return { name: sessionStorage.getItem("name") }
@@ -31,6 +34,11 @@ const Root = () => {
   const data: any = useLoaderData()
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
+  const store = useStore()
+
+  useEffect(() => {
+    store.api.music.query()
+  }, [])
 
   return (
     <div className="container">
@@ -87,6 +95,36 @@ const Root = () => {
 
       <main className="main-content" style={{ overflow: "auto" }}>
         <section className="content" id="ndzy-content">
+          <Space direction="vertical">
+            {store.songs.map((item) => (
+              <>
+                <Image src={item.img} style={{ width: 200 }} />
+                <Button
+                  type="link"
+                  onClick={() => {
+                    store.api.music.url(item.id)
+                  }}
+                >
+                  {item.name}
+                </Button>
+              </>
+            ))}
+          </Space>
+
+          {store.songUrl && (
+            <ReactPlayer
+              style={{
+                position: "fixed",
+                bottom: 16,
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
+              playing
+              height={60}
+              url={store.songUrl}
+              controls
+            />
+          )}
           <Outlet />
         </section>
       </main>
