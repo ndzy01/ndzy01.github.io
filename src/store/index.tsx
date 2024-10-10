@@ -247,7 +247,6 @@ const App = (props: { children: React.ReactNode }) => {
   }
 
   const musicSong = async (id: string) => {
-    setLoading(true)
     try {
       const data2 = await musicService("/song/url/v1", {
         method: "GET",
@@ -258,10 +257,8 @@ const App = (props: { children: React.ReactNode }) => {
         const song = data2.data.data[0]
         setSong(song)
       }
-
-      setLoading(false)
     } catch (error) {
-      setLoading(false)
+      //
     }
   }
 

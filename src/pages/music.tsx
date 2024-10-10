@@ -102,7 +102,7 @@ const Music = () => {
             controls
             onEnded={() => {
               const randomIndex = Math.floor(Math.random() * store.songs.length)
-              store.api.music.s(store.songs[randomIndex].id)
+              store.api.music.song(store.songs[randomIndex].id)
             }}
           />
         )}
