@@ -10,8 +10,15 @@ const Music = () => {
   const [open, setOpen] = useState(false)
   const store = useStore()
 
+  const [ndzySongs, setNdzySongs] = useState([])
+
   useEffect(() => {
     store.api.music.cloud()
+    fetch("https://www.ndzy01.com/music/data.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setNdzySongs(res)
+      })
   }, [])
 
   return (

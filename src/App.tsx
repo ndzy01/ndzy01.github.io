@@ -12,6 +12,7 @@ import ErrorPage from "./pages/error"
 import Home from "./pages/home"
 import Login from "./pages/login"
 import Music from "./pages/music"
+import NdzyMusic from "./pages/ndzy-music"
 import Root, { loginLoader } from "./pages/root"
 import StoreApp from "./store/index"
 
@@ -63,6 +64,10 @@ const router = createHashRouter([
       {
         path: "/music",
         element: <Music />,
+      },
+      {
+        path: "/ndzy-music",
+        element: <NdzyMusic />,
       },
       {
         path: "/login",
