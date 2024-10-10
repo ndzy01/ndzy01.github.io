@@ -61,12 +61,11 @@ const Music = () => {
         <Button
           onClick={() => {
             store.api.music.cloud()
+            setGroupId("")
           }}
         >
           云盘
         </Button>
-
-        {store.song && store.song.name}
       </Space>
 
       {store.loading && <Spin size="large" style={{ marginBottom: 16 }} />}

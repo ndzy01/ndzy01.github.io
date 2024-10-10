@@ -254,9 +254,8 @@ const App = (props: { children: React.ReactNode }) => {
         params: { id, level: "lossless" },
       })
 
-      if (data2.data.data && data2.data.data.lenght > 0) {
-        const song = data2.data.data[0]
-        setSong(song)
+      if (data2.data.data && data2.data.data.length > 0) {
+        setSong(data2.data.data[0])
       }
 
       setLoading(false)
