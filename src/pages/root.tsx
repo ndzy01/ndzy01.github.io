@@ -25,7 +25,7 @@ const items: MenuItem[] = [
   //   ],
   // },
   { key: "/article", label: "文章" },
-  { key: "/music", label: "音乐" },
+  { key: "/music", label: "网易云音乐" },
   { key: "/ndzy-music", label: "音乐" },
 ]
 

@@ -11,6 +11,7 @@ interface NdzyContextType {
   setLoading: (v: boolean) => void
   articles: Tree[]
   article?: Tree
+  songGroup: any[]
   songs: any[]
   songUrl?: string
   api: {
@@ -29,9 +30,10 @@ interface NdzyContextType {
     }
     music: {
       login: (v: any) => Promise<void>
-      query: () => Promise<void>
+      query: (id: string) => Promise<void>
       cloud: () => Promise<void>
       url: (id: string) => Promise<void>
+      group: () => Promise<void>
     }
   }
 }
@@ -46,6 +48,7 @@ const App = (props: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false)
   const [articles, setArticles] = useState<Tree[]>([])
   const [songs, setSongs] = useState<any[]>([])
+  const [songGroup, setSongGroup] = useState<any[]>([])
   const [songUrl, setSongUrl] = useState("")
   const [article, setArticle] = useState()
 
@@ -142,63 +145,110 @@ const App = (props: { children: React.ReactNode }) => {
     setLoading(false)
   }
 
-  //
+  // 登录网易云音乐
   const musicLogin = async (values: any) => {
-    await musicService("/login/cellphone", {
-      method: "GET",
-      params: { ...values },
-    })
+    setLoading(true)
+    try {
+      await musicService("/login/cellphone", {
+        method: "GET",
+        params: { ...values },
+      })
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
-  const musicQuery = async () => {
-    const data = await musicService("/playlist/detail", {
-      method: "GET",
-      params: { id: 797584768 },
-    })
+  // 网易云歌曲列表
+  const musicGroup = async () => {
+    setLoading(true)
+    try {
+      const data1 = await musicService("/user/account")
+      const data = await musicService("/user/playlist", {
+        method: "GET",
+        params: { uid: data1.data.account.id },
+      })
+      setLoading(false)
+      setSongGroup(
+        data.data.playlist.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+        }))
+      )
+    } catch (error) {
+      setLoading(false)
+    }
+  }
 
-    const ids: any[] = data.data.playlist.trackIds.map((item: any) => item.id)
+  const musicQuery = async (id: string) => {
+    setLoading(true)
+    try {
+      const data = await musicService("/playlist/detail", {
+        method: "GET",
+        params: { id },
+      })
 
-    const data1 = await musicService("/song/detail", {
-      method: "GET",
-      params: { ids: ids.toString() },
-    })
+      const ids: any[] = data.data.playlist.trackIds.map((item: any) => item.id)
 
-    const list = data1.data.songs.map(({ id, name, al, ar, mv, dt }: any) => ({
-      id,
-      name,
-      artists: ar,
-      duration: dt,
-      mvId: mv,
-      albumName: al.name,
-      img: al.picUrl,
-    }))
-    setSongs(list)
+      const data1 = await musicService("/song/detail", {
+        method: "GET",
+        params: { ids: ids.toString() },
+      })
+
+      const list = data1.data.songs.map(
+        ({ id, name, al, ar, mv, dt }: any) => ({
+          id,
+          name,
+          artists: ar,
+          duration: dt,
+          mvId: mv,
+          albumName: al.name,
+          img: al.picUrl,
+        })
+      )
+      setLoading(false)
+      setSongs(list)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   const musicCloud = async () => {
-    const data = await musicService("/user/cloud", {
-      method: "GET",
-      params: { limit: 10000 },
-    })
-
-    const list = data.data.data.map(
-      ({ songId, songName, simpleSong }: any) => ({
-        id: songId,
-        name: songName,
-        img: simpleSong.al.picUrl,
+    setLoading(true)
+    try {
+      const data = await musicService("/user/cloud", {
+        method: "GET",
+        params: { limit: 10000 },
       })
-    )
-    setSongs(list)
+
+      const list = data.data.data.map(
+        ({ songId, songName, simpleSong }: any) => ({
+          id: songId,
+          name: songName,
+          img: simpleSong.al.picUrl,
+        })
+      )
+      setLoading(false)
+      setSongs(list)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   const musicSongUrl = async (id: string) => {
-    const data2 = await musicService("/song/url/v1", {
-      method: "GET",
-      params: { id, level: "lossless" },
-    })
+    setLoading(true)
+    try {
+      const data2 = await musicService("/song/url/v1", {
+        method: "GET",
+        params: { id, level: "lossless" },
+      })
 
-    const song = data2.data.data[0]
-    setSongUrl(song.url)
+      const song = data2.data.data[0]
+      setLoading(false)
+      setSongUrl(song.url)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -224,6 +274,7 @@ const App = (props: { children: React.ReactNode }) => {
       articles={articles}
       article={article}
       songs={songs}
+      songGroup={songGroup}
       songUrl={songUrl}
       api={{
         login: { auth, login },
@@ -241,6 +292,7 @@ const App = (props: { children: React.ReactNode }) => {
           query: musicQuery,
           url: musicSongUrl,
           cloud: musicCloud,
+          group: musicGroup,
         },
       }}
     >

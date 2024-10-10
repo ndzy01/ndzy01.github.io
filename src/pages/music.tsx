@@ -1,4 +1,14 @@
-import { Button, ConfigProvider, Drawer, Form, Image, Input, Space } from "antd"
+import {
+  Button,
+  ConfigProvider,
+  Drawer,
+  Form,
+  Image,
+  Input,
+  Select,
+  Space,
+  Spin,
+} from "antd"
 import zhCN from "antd/locale/zh_CN"
 
 import { useEffect, useState } from "react"
@@ -10,18 +20,14 @@ const Music = () => {
   const [open, setOpen] = useState(false)
   const store = useStore()
 
-  const [ndzySongs, setNdzySongs] = useState([])
-
   useEffect(() => {
     store.api.music.cloud()
-    fetch("https://www.ndzy01.com/music/data.json")
-      .then((res) => res.json())
-      .then((res) => {
-        setNdzySongs(res)
-      })
+    store.api.music.group()
   }, [])
 
-  return (
+  return store.loading ? (
+    <Spin size="large" />
+  ) : (
     <>
       <Space>
         <Button
@@ -33,14 +39,16 @@ const Music = () => {
           云盘
         </Button>
 
-        <Button
-          style={{ marginBottom: 16 }}
-          onClick={() => {
-            store.api.music.query()
+        <Select
+          style={{ width: 120 }}
+          onChange={(v) => {
+            store.api.music.query(v)
           }}
-        >
-          喜欢
-        </Button>
+          options={store.songGroup.map((item) => ({
+            label: item.name,
+            value: item.id,
+          }))}
+        />
 
         <Button
           style={{ marginBottom: 16 }}
