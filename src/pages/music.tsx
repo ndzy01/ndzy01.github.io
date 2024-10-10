@@ -33,9 +33,7 @@ const Music = () => {
     }
   }, [store.songGroup])
 
-  return store.loading ? (
-    <Spin size="large" />
-  ) : (
+  return (
     <>
       <Space style={{ marginBottom: 16 }}>
         <Button
@@ -70,6 +68,8 @@ const Music = () => {
 
         {store.song && store.song.name}
       </Space>
+
+      {store.loading && <Spin size="large" style={{ marginBottom: 16 }} />}
 
       <div style={{ paddingBottom: 100 }}>
         <Space wrap size={32}>
