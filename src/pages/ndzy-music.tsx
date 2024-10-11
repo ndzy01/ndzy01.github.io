@@ -22,7 +22,7 @@ const NdzyMusic = () => {
           正在播放：<span style={{ color: "pink" }}>{song.name}</span>
         </div>
       )}
-      <div style={{ paddingBottom: 100, position: "relative" }}>
+      <div style={{ paddingBottom: 140, position: "relative" }}>
         <Space wrap size={32}>
           {ndzySongs.map((item) => (
             <div style={{ width: 200 }} key={item.id}>
@@ -43,16 +43,18 @@ const NdzyMusic = () => {
         {song && song.url && (
           <ReactPlayer
             style={{
+              zIndex: 999,
               position: "absolute",
               bottom: 0,
               left: "50%",
               transform: "translateX(-50%)",
             }}
-            volume={0.3}
             playing
-            height={60}
+            height={100}
             width={300}
             url={song.url}
+            title={song.name}
+            playsinline
             controls
             onEnded={() => {
               const randomIndex = Math.floor(Math.random() * ndzySongs.length)
