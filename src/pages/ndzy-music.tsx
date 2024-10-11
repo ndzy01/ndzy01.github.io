@@ -18,16 +18,17 @@ const NdzyMusic = () => {
   return (
     <>
       {song && (
-        <div>
+        <div style={{ textAlign: "center", marginBottom: 16 }}>
           正在播放：<span style={{ color: "pink" }}>{song.name}</span>
         </div>
       )}
-      <div style={{ paddingBottom: 100 }}>
+      <div style={{ paddingBottom: 100, position: "relative" }}>
         <Space wrap size={32}>
           {ndzySongs.map((item) => (
             <div style={{ width: 200 }} key={item.id}>
               {/* <Image src={item.img} style={{ width: 120, height: 160 }} /> */}
               <Button
+                style={song?.id === item.id ? { color: "green" } : {}}
                 type="link"
                 onClick={() => {
                   setSong(item)
@@ -42,13 +43,14 @@ const NdzyMusic = () => {
         {song && song.url && (
           <ReactPlayer
             style={{
-              position: "fixed",
-              bottom: 32,
+              position: "absolute",
+              bottom: 0,
               left: "50%",
               transform: "translateX(-50%)",
             }}
             playing
             height={60}
+            width={300}
             url={song.url}
             controls
             onEnded={() => {
