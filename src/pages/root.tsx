@@ -81,7 +81,7 @@ const Root = () => {
         </aside>
       ) : (
         <Button
-          style={{ position: "fixed", left: 16, top: 16 }}
+          style={{ position: "fixed", left: 0, top: 16 }}
           icon={<MenuUnfoldOutlined />}
           onClick={() => setCollapsed(false)}
         />
