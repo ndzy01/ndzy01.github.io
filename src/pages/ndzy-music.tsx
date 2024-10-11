@@ -48,6 +48,7 @@ const NdzyMusic = () => {
               left: "50%",
               transform: "translateX(-50%)",
             }}
+            volume={0.3}
             playing
             height={60}
             width={300}
