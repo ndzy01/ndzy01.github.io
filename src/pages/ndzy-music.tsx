@@ -1,3 +1,4 @@
+import { useInterval } from "ahooks"
 import { Button, Space } from "antd"
 
 import { useEffect, useState } from "react"
@@ -7,13 +8,21 @@ const NdzyMusic = () => {
   const [ndzySongs, setNdzySongs] = useState<any[]>([])
   const [song, setSong] = useState<any>()
 
-  useEffect(() => {
+  const init = () => {
     fetch("https://www.ndzy01.com/music/data.json")
       .then((res) => res.json())
       .then((res) => {
         setNdzySongs(res)
       })
+  }
+
+  useEffect(() => {
+    init()
   }, [])
+
+  useInterval(() => {
+    init()
+  }, 60 * 1000)
 
   return (
     <>
