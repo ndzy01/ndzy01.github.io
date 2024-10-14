@@ -1,4 +1,4 @@
-import {useInterval, useLocalStorageState, useUpdateEffect} from "ahooks"
+import {useInterval, useUpdateEffect} from "ahooks"
 import {Button, Select, Space} from "antd"
 import axios from "axios"
 
@@ -9,11 +9,7 @@ const NdzyMusic = () => {
   const [ndzySongs, setNdzySongs] = useState<any[]>([])
   const [song, setSong] = useState<any>()
   const [type, setType] = useState<"0" | "1">("0")
-  const [currentIndex, setCurrentIndex] = useLocalStorageState<
-    string | undefined
-  >("currentIndex", {
-    defaultValue: "0",
-  })
+  const [currentIndex, setCurrentIndex] = useState(-1)
 
   const init = async () => {
     const list = [
@@ -45,17 +41,18 @@ const NdzyMusic = () => {
   }
 
   useEffect(() => {
-    init().then(() => {
-      setSong(ndzySongs[currentIndex as any])
-    })
+    init().then()
   }, [])
 
-  useInterval(() => {
-    init().then()
-  }, 60 * 60 * 1000)
+  useInterval(
+    () => {
+      init().then()
+    },
+    60 * 60 * 1000
+  )
 
   useUpdateEffect(() => {
-    setSong(ndzySongs[currentIndex as any])
+    setSong(ndzySongs[currentIndex])
   }, [currentIndex])
 
   return (
@@ -66,6 +63,7 @@ const NdzyMusic = () => {
         </div>
       )}
       <Select
+        style={{width: 120}}
         value={type}
         onChange={(v) => setType(v)}
         options={[
@@ -82,7 +80,7 @@ const NdzyMusic = () => {
                 style={song?.id === item.id ? {color: "green"} : {}}
                 type="link"
                 onClick={() => {
-                  setCurrentIndex(String(index))
+                  setCurrentIndex(index)
                 }}
               >
                 {item.name}
@@ -109,16 +107,14 @@ const NdzyMusic = () => {
             controls
             onEnded={() => {
               if (type === "1") {
-                setCurrentIndex(
-                  Math.floor(Math.random() * ndzySongs.length) + ""
-                )
+                setCurrentIndex(Math.floor(Math.random() * ndzySongs.length))
               }
 
               if (type === "0") {
                 if (Number(currentIndex) === ndzySongs.length - 1) {
-                  setCurrentIndex("0")
+                  setCurrentIndex(0)
                 } else {
-                  setCurrentIndex(String(Number(currentIndex) + 1))
+                  setCurrentIndex((prevState) => prevState + 1)
                 }
               }
             }}
