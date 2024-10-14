@@ -10,7 +10,7 @@ const NdzyMusic = () => {
   const [song, setSong] = useState<any>()
 
   const init = async () => {
-    const list = ["https://www.ndzy01.com/music/data.json"]
+    const list = ["https://www.ndzy01.com/music01/data.json"]
     const songs: any[] = []
 
     for await (const url of list) {
