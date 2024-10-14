@@ -110,12 +110,41 @@ const Root = () => {
         </section>
 
         {show ? (
-          <div
+          <CloseCircleOutlined
             style={{
+              zIndex: 999,
               position: "fixed",
               top: 32,
               right: 32,
-              boxShadow: "0 8px 24px #0000000d",
+              padding: 16,
+            }}
+            onClick={() => setShow(false)}
+          />
+        ) : (
+          <PlayCircleOutlined
+            style={{
+              zIndex: 999,
+              position: "fixed",
+              top: 32,
+              right: 32,
+              padding: 16,
+            }}
+            onClick={() => setShow(true)}
+          />
+        )}
+
+        <div
+          style={{
+            position: "fixed",
+            top: 32,
+            right: 32,
+          }}
+        >
+          <div
+            style={{
+              visibility: !show ? "hidden" : "visible",
+              background: "#f7f7f7",
+              boxShadow: "0 2px 5px 1px rgba(64, 60, 67, .16);",
               padding: 16,
             }}
           >
@@ -143,7 +172,9 @@ const Root = () => {
                     if (ndzyMusic.currentIndex === ndzyMusic.songs.length - 1) {
                       setNdzyMusic({ currentIndex: 0 })
                     } else {
-                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
+                      setNdzyMusic({
+                        currentIndex: ndzyMusic.currentIndex + 1,
+                      })
                     }
                   }
                 }}
@@ -171,9 +202,13 @@ const Root = () => {
                   style={{ width: 32, height: 32 }}
                   onClick={() => {
                     if (ndzyMusic.currentIndex > 1) {
-                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex - 1 })
+                      setNdzyMusic({
+                        currentIndex: ndzyMusic.currentIndex - 1,
+                      })
                     } else {
-                      setNdzyMusic({ currentIndex: ndzyMusic.songs.length - 1 })
+                      setNdzyMusic({
+                        currentIndex: ndzyMusic.songs.length - 1,
+                      })
                     }
                   }}
                 />
@@ -182,16 +217,13 @@ const Root = () => {
                   style={{ width: 32, height: 32 }}
                   onClick={() => {
                     if (ndzyMusic.currentIndex < ndzyMusic.songs.length - 1) {
-                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
+                      setNdzyMusic({
+                        currentIndex: ndzyMusic.currentIndex + 1,
+                      })
                     } else {
                       setNdzyMusic({ currentIndex: 0 })
                     }
                   }}
-                />
-
-                <CloseCircleOutlined
-                  style={{ width: 32, height: 32 }}
-                  onClick={() => setShow(false)}
                 />
               </Space>
 
@@ -210,17 +242,7 @@ const Root = () => {
               />
             </Space>
           </div>
-        ) : (
-          <PlayCircleOutlined
-            style={{
-              position: "fixed",
-              top: 32,
-              right: 32,
-              padding: 16,
-            }}
-            onClick={() => setShow(true)}
-          />
-        )}
+        </div>
       </main>
     </div>
   )
