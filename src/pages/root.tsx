@@ -227,19 +227,23 @@ const Root = () => {
                 />
               </Space>
 
-              <Select
-                style={{ width: 180 }}
-                value={ndzyMusic.songs[ndzyMusic.currentIndex]?.id}
-                onChange={(v) =>
-                  setNdzyMusic({
-                    currentIndex: ndzyMusic.songs.findIndex((s) => s.id === v),
-                  })
-                }
-                options={ndzyMusic.songs.map((item) => ({
-                  value: item.id,
-                  label: item.name,
-                }))}
-              />
+              {ndzyMusic.songs.length > 0 && (
+                <Select
+                  style={{ width: 180 }}
+                  value={ndzyMusic.songs[ndzyMusic.currentIndex]?.id}
+                  onChange={(v) =>
+                    setNdzyMusic({
+                      currentIndex: ndzyMusic.songs.findIndex(
+                        (s) => s.id === v
+                      ),
+                    })
+                  }
+                  options={ndzyMusic.songs.map((item) => ({
+                    value: item.id,
+                    label: item.name,
+                  }))}
+                />
+              )}
             </Space>
           </div>
         </div>
