@@ -229,6 +229,8 @@ const Root = () => {
 
               {ndzyMusic.songs.length > 0 && (
                 <Select
+                  showSearch
+                  optionFilterProp="label"
                   style={{ width: 180 }}
                   value={ndzyMusic.songs[ndzyMusic.currentIndex]?.id}
                   onChange={(v) =>
