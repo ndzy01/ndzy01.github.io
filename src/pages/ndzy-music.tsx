@@ -13,12 +13,26 @@ const NdzyMusic = () => {
     const list = [
       "https://www.ndzy01.com/music01/data.json",
       "https://www.ndzy01.com/music02/data.json",
+      "https://www.ndzy01.com/music03/data.json",
+      "https://www.ndzy01.com/music04/data.json",
+      "https://www.ndzy01.com/music05/data.json",
+      "https://www.ndzy01.com/music06/data.json",
+      "https://www.ndzy01.com/music07/data.json",
+      "https://www.ndzy01.com/music08/data.json",
+      "https://www.ndzy01.com/music09/data.json",
     ]
     const songs: any[] = []
 
     for await (const url of list) {
-      const data = await axios(url)
-      songs.push(...data.data)
+      try {
+        const data = await axios(url)
+
+        if (data) {
+          songs.push(...data.data)
+        }
+      } catch (error) {
+        //
+      }
     }
 
     setNdzySongs(songs)
