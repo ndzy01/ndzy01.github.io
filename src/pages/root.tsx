@@ -3,7 +3,10 @@ import { Button, MenuProps } from "antd"
 import { Menu } from "antd"
 
 import { useState } from "react"
+import ReactPlayer from "react-player"
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom"
+
+import { useStore } from "../store"
 
 export async function loginLoader() {
   return { name: sessionStorage.getItem("name") }
@@ -33,6 +36,7 @@ const Root = () => {
   const data: any = useLoaderData()
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
+  const { ndzyMusic, setNdzyMusic } = useStore()
 
   return (
     <div className="container">
@@ -91,6 +95,39 @@ const Root = () => {
         <section className="content" id="ndzy-content">
           <Outlet />
         </section>
+        {ndzyMusic?.song && ndzyMusic?.song?.url && (
+          <ReactPlayer
+            playing
+            height={100}
+            width={220}
+            style={{
+              zIndex: 9999,
+              position: "fixed",
+              top: 16,
+              right: 16,
+            }}
+            url={ndzyMusic.song.url}
+            playsinline
+            controls
+            onEnded={() => {
+              if (ndzyMusic.type === "1") {
+                setNdzyMusic({
+                  currentIndex: Math.floor(
+                    Math.random() * ndzyMusic.songs.length
+                  ),
+                })
+              }
+
+              if (ndzyMusic.type === "0") {
+                if (ndzyMusic.currentIndex === ndzyMusic.songs.length - 1) {
+                  setNdzyMusic({ currentIndex: 0 })
+                } else {
+                  setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
+                }
+              }
+            }}
+          />
+        )}
       </main>
     </div>
   )

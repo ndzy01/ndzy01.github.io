@@ -1,12 +1,27 @@
+import { useInterval, useSetState, useUpdateEffect } from "ahooks"
 import { message } from "antd"
+import axios from "axios"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { createContext } from "./createContext"
 
 import { Tree, loop, musicService, service } from "../utils"
 
 const NDZY_NAME = "NDZY"
+
+interface Song {
+  id: string
+  name: string
+  url: string
+}
+
+interface NdzyMusic {
+  songs: Song[]
+  song?: Song
+  type: "0" | "1"
+  currentIndex: number
+}
 
 interface NdzyContextType {
   loading: boolean
@@ -16,6 +31,8 @@ interface NdzyContextType {
   songGroup: any[]
   songs: any[]
   song?: any
+  ndzyMusic: NdzyMusic
+  setNdzyMusic: (v: Partial<NdzyMusic>) => void
   api: {
     login: {
       auth: () => Promise<any>
@@ -53,6 +70,16 @@ const App = (props: { children: React.ReactNode }) => {
   const [songGroup, setSongGroup] = useState<any[]>([])
   const [song, setSong] = useState<any>()
   const [article, setArticle] = useState()
+  const [ndzyMusic, setNdzyMusic] = useSetState<{
+    songs: Song[]
+    song?: Song
+    type: "0" | "1"
+    currentIndex: number
+  }>({
+    songs: [],
+    type: "0",
+    currentIndex: -1,
+  })
 
   const auth = async () => {
     setLoading(true)
@@ -272,6 +299,50 @@ const App = (props: { children: React.ReactNode }) => {
     }
   }
 
+  const init = async () => {
+    const list = [
+      "https://www.ndzy01.com/music01/data.json",
+      "https://www.ndzy01.com/music02/data.json",
+      "https://www.ndzy01.com/music03/data.json",
+      "https://www.ndzy01.com/music04/data.json",
+      "https://www.ndzy01.com/music05/data.json",
+      "https://www.ndzy01.com/music06/data.json",
+      "https://www.ndzy01.com/music07/data.json",
+      "https://www.ndzy01.com/music08/data.json",
+      "https://www.ndzy01.com/music09/data.json",
+    ]
+    const songs: any[] = []
+
+    for await (const url of list) {
+      try {
+        const data = await axios(url)
+
+        if (data) {
+          songs.push(...data.data)
+        }
+      } catch (error) {
+        //
+      }
+    }
+
+    setNdzyMusic({ songs })
+  }
+
+  useEffect(() => {
+    init().then()
+  }, [])
+
+  useInterval(
+    () => {
+      init().then()
+    },
+    60 * 60 * 1000
+  )
+
+  useUpdateEffect(() => {
+    setNdzyMusic({ song: ndzyMusic.songs[ndzyMusic.currentIndex] })
+  }, [ndzyMusic.currentIndex])
+
   return (
     <NdzyProvider
       loading={loading}
@@ -281,6 +352,8 @@ const App = (props: { children: React.ReactNode }) => {
       songs={songs}
       songGroup={songGroup}
       song={song}
+      ndzyMusic={ndzyMusic}
+      setNdzyMusic={setNdzyMusic as any}
       api={{
         login: { auth, login },
         article: {

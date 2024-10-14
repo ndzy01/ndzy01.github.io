@@ -1,86 +1,38 @@
-import {useInterval, useUpdateEffect} from "ahooks"
-import {Button, Select, Space} from "antd"
-import axios from "axios"
+import { Button, Select, Space } from "antd"
 
-import {useEffect, useState} from "react"
-import ReactPlayer from "react-player"
+import { useStore } from "../store"
 
 const NdzyMusic = () => {
-  const [ndzySongs, setNdzySongs] = useState<any[]>([])
-  const [song, setSong] = useState<any>()
-  const [type, setType] = useState<"0" | "1">("0")
-  const [currentIndex, setCurrentIndex] = useState(-1)
-
-  const init = async () => {
-    const list = [
-      "https://www.ndzy01.com/music01/data.json",
-      "https://www.ndzy01.com/music02/data.json",
-      "https://www.ndzy01.com/music03/data.json",
-      "https://www.ndzy01.com/music04/data.json",
-      "https://www.ndzy01.com/music05/data.json",
-      "https://www.ndzy01.com/music06/data.json",
-      "https://www.ndzy01.com/music07/data.json",
-      "https://www.ndzy01.com/music08/data.json",
-      "https://www.ndzy01.com/music09/data.json",
-    ]
-    const songs: any[] = []
-
-    for await (const url of list) {
-      try {
-        const data = await axios(url)
-
-        if (data) {
-          songs.push(...data.data)
-        }
-      } catch (error) {
-        //
-      }
-    }
-
-    setNdzySongs(songs)
-  }
-
-  useEffect(() => {
-    init().then()
-  }, [])
-
-  useInterval(
-    () => {
-      init().then()
-    },
-    60 * 60 * 1000
-  )
-
-  useUpdateEffect(() => {
-    setSong(ndzySongs[currentIndex])
-  }, [currentIndex])
+  const { ndzyMusic, setNdzyMusic } = useStore()
 
   return (
     <>
-      {song && (
-        <div style={{textAlign: "center", marginBottom: 16}}>
-          正在播放：<span style={{color: "pink"}}>{song.name}</span>
+      {ndzyMusic.song && (
+        <div style={{ textAlign: "center", marginBottom: 16 }}>
+          正在播放：<span style={{ color: "pink" }}>{ndzyMusic.song.name}</span>
         </div>
       )}
       <Select
-        style={{width: 120}}
-        value={type}
-        onChange={(v) => setType(v)}
+        style={{ width: 120 }}
+        value={ndzyMusic.type}
+        onChange={(v) => setNdzyMusic({ type: v })}
         options={[
-          {label: "顺序", value: "0"},
-          {label: "随机", value: "1"},
+          { label: "顺序", value: "0" },
+          { label: "随机", value: "1" },
         ]}
       />
 
-      <div style={{paddingBottom: 140, position: "relative"}}>
+      <div style={{ paddingBottom: 140, position: "relative" }}>
         <Space wrap size={32}>
-          {ndzySongs.map((item, index) => (
-            <div style={{width: 200}} key={item.id}>
+          {ndzyMusic.songs.map((item, index) => (
+            <div style={{ width: 200 }} key={item.id}>
               <Button
-                style={song?.id === item.id ? {color: "green"} : {}}
+                style={
+                  ndzyMusic?.song?.id === item.id ? { color: "green" } : {}
+                }
                 type="link"
                 onClick={() => {
-                  setCurrentIndex(index)
+                  setNdzyMusic({ currentIndex: index })
                 }}
               >
                 {item.name}
@@ -88,38 +40,6 @@ const NdzyMusic = () => {
             </div>
           ))}
         </Space>
-
-        {song && song.url && (
-          <ReactPlayer
-            style={{
-              zIndex: 999,
-              position: "absolute",
-              bottom: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-            playing
-            height={100}
-            width={300}
-            url={song.url}
-            title={song.name}
-            playsinline
-            controls
-            onEnded={() => {
-              if (type === "1") {
-                setCurrentIndex(Math.floor(Math.random() * ndzySongs.length))
-              }
-
-              if (type === "0") {
-                if (Number(currentIndex) === ndzySongs.length - 1) {
-                  setCurrentIndex(0)
-                } else {
-                  setCurrentIndex((prevState) => prevState + 1)
-                }
-              }
-            }}
-          />
-        )}
       </div>
     </>
   )
