@@ -1,5 +1,12 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons"
-import { Button, MenuProps } from "antd"
+import {
+  CloseCircleOutlined,
+  LeftCircleOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  PlayCircleOutlined,
+  RightCircleOutlined,
+} from "@ant-design/icons"
+import { Button, MenuProps, Radio, Select, Space } from "antd"
 import { Menu } from "antd"
 
 import { useState } from "react"
@@ -37,6 +44,12 @@ const Root = () => {
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
   const { ndzyMusic, setNdzyMusic } = useStore()
+  const [playing, setPlaying] = useState(false)
+  const [show, setShow] = useState(false)
+
+  const handleReady = () => {
+    setPlaying(true)
+  }
 
   return (
     <div className="container">
@@ -95,37 +108,117 @@ const Root = () => {
         <section className="content" id="ndzy-content">
           <Outlet />
         </section>
-        {ndzyMusic?.song && ndzyMusic?.song?.url && (
-          <ReactPlayer
-            playing
-            height={100}
-            width={220}
-            style={{
-              zIndex: 9999,
-              position: "fixed",
-              top: 16,
-              right: 16,
-            }}
-            url={ndzyMusic.song.url}
-            playsinline
-            controls
-            onEnded={() => {
-              if (ndzyMusic.type === "1") {
-                setNdzyMusic({
-                  currentIndex: Math.floor(
-                    Math.random() * ndzyMusic.songs.length
-                  ),
-                })
-              }
 
-              if (ndzyMusic.type === "0") {
-                if (ndzyMusic.currentIndex === ndzyMusic.songs.length - 1) {
-                  setNdzyMusic({ currentIndex: 0 })
-                } else {
-                  setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
-                }
-              }
+        {show ? (
+          <div
+            style={{
+              position: "fixed",
+              top: 32,
+              right: 32,
+              boxShadow: "0 8px 24px #0000000d",
+              padding: 16,
             }}
+          >
+            {ndzyMusic?.song?.url && (
+              <ReactPlayer
+                playing={playing}
+                height={100}
+                width={300}
+                url={ndzyMusic.song.url}
+                playsinline
+                controls
+                onReady={handleReady}
+                onEnded={() => {
+                  setPlaying(false)
+
+                  if (ndzyMusic.type === "1") {
+                    setNdzyMusic({
+                      currentIndex: Math.floor(
+                        Math.random() * ndzyMusic.songs.length
+                      ),
+                    })
+                  }
+
+                  if (ndzyMusic.type === "0") {
+                    if (ndzyMusic.currentIndex === ndzyMusic.songs.length - 1) {
+                      setNdzyMusic({ currentIndex: 0 })
+                    } else {
+                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
+                    }
+                  }
+                }}
+              />
+            )}
+
+            <Space direction={"vertical"} size={16} style={{ marginTop: 16 }}>
+              {ndzyMusic.song && (
+                <div>
+                  正在播放：
+                  <span style={{ color: "pink" }}>{ndzyMusic.song.name}</span>
+                </div>
+              )}
+
+              <Space>
+                <Radio.Group
+                  value={ndzyMusic.type}
+                  onChange={(e) => setNdzyMusic({ type: e.target.value })}
+                >
+                  <Radio.Button value="0">顺序</Radio.Button>
+                  <Radio.Button value="1">随机</Radio.Button>
+                </Radio.Group>
+
+                <LeftCircleOutlined
+                  style={{ width: 32, height: 32 }}
+                  onClick={() => {
+                    if (ndzyMusic.currentIndex > 1) {
+                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex - 1 })
+                    } else {
+                      setNdzyMusic({ currentIndex: ndzyMusic.songs.length - 1 })
+                    }
+                  }}
+                />
+
+                <RightCircleOutlined
+                  style={{ width: 32, height: 32 }}
+                  onClick={() => {
+                    if (ndzyMusic.currentIndex < ndzyMusic.songs.length - 1) {
+                      setNdzyMusic({ currentIndex: ndzyMusic.currentIndex + 1 })
+                    } else {
+                      setNdzyMusic({ currentIndex: 0 })
+                    }
+                  }}
+                />
+
+                <CloseCircleOutlined
+                  style={{ width: 32, height: 32 }}
+                  onClick={() => setShow(false)}
+                />
+              </Space>
+
+              <Select
+                style={{ width: 180 }}
+                value={ndzyMusic.songs[ndzyMusic.currentIndex].id}
+                onChange={(v) =>
+                  setNdzyMusic({
+                    currentIndex: ndzyMusic.songs.findIndex((s) => s.id === v),
+                  })
+                }
+                options={ndzyMusic.songs.map((item) => ({
+                  value: item.id,
+                  label: item.name,
+                }))}
+              />
+            </Space>
+          </div>
+        ) : (
+          <PlayCircleOutlined
+            style={{
+              position: "fixed",
+              top: 32,
+              right: 32,
+              padding: 16,
+            }}
+            onClick={() => setShow(true)}
           />
         )}
       </main>
