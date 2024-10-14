@@ -56,7 +56,7 @@ const Root = () => {
       {!collapsed ? (
         <aside
           className="sidebar"
-          style={{ display: collapsed ? "none" : "block" }}
+          style={{ display: collapsed ? "none" : "block", zIndex: 9999999 }}
         >
           <div
             style={{
@@ -87,7 +87,7 @@ const Root = () => {
             </div>
           </header>
           <Menu
-            style={{ borderRadius: 5, zIndex: 9999999 }}
+            style={{ borderRadius: 5 }}
             onClick={(e) => {
               navigate(e.key)
             }}
