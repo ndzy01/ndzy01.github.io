@@ -229,7 +229,7 @@ const Root = () => {
 
               <Select
                 style={{ width: 180 }}
-                value={ndzyMusic.songs[ndzyMusic.currentIndex].id}
+                value={ndzyMusic.songs[ndzyMusic.currentIndex]?.id}
                 onChange={(v) =>
                   setNdzyMusic({
                     currentIndex: ndzyMusic.songs.findIndex((s) => s.id === v),
