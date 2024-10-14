@@ -1,5 +1,5 @@
-import { useInterval } from "ahooks"
-import { Button, Space } from "antd"
+import { useInterval, useLocalStorageState, useUpdateEffect } from "ahooks"
+import { Button, Select, Space } from "antd"
 import axios from "axios"
 
 import { useEffect, useState } from "react"
@@ -8,6 +8,12 @@ import ReactPlayer from "react-player"
 const NdzyMusic = () => {
   const [ndzySongs, setNdzySongs] = useState<any[]>([])
   const [song, setSong] = useState<any>()
+  const [type, setType] = useState<"0" | "1">("0")
+  const [currentIndex, setCurrentIndex] = useLocalStorageState<
+    string | undefined
+  >("currentIndex", {
+    defaultValue: "0",
+  })
 
   const init = async () => {
     const list = [
@@ -39,12 +45,18 @@ const NdzyMusic = () => {
   }
 
   useEffect(() => {
-    init()
+    init().then(() => {
+      setSong(ndzySongs[currentIndex as any])
+    })
   }, [])
 
   useInterval(() => {
-    init()
+    init().then()
   }, 60 * 1000)
+
+  useUpdateEffect(() => {
+    setSong(ndzySongs[currentIndex as any])
+  }, [currentIndex])
 
   return (
     <>
@@ -53,16 +65,24 @@ const NdzyMusic = () => {
           正在播放：<span style={{ color: "pink" }}>{song.name}</span>
         </div>
       )}
+      <Select
+        value={type}
+        onChange={(v) => setType(v)}
+        options={[
+          { label: "顺序", value: "0" },
+          { label: "随机", value: "1" },
+        ]}
+      />
+
       <div style={{ paddingBottom: 140, position: "relative" }}>
         <Space wrap size={32}>
-          {ndzySongs.map((item) => (
+          {ndzySongs.map((item, index) => (
             <div style={{ width: 200 }} key={item.id}>
-              {/* <Image src={item.img} style={{ width: 120, height: 160 }} /> */}
               <Button
                 style={song?.id === item.id ? { color: "green" } : {}}
                 type="link"
                 onClick={() => {
-                  setSong(item)
+                  setCurrentIndex(String(index))
                 }}
               >
                 {item.name}
@@ -88,8 +108,19 @@ const NdzyMusic = () => {
             playsinline
             controls
             onEnded={() => {
-              const randomIndex = Math.floor(Math.random() * ndzySongs.length)
-              setSong(ndzySongs[randomIndex])
+              if (type === "1") {
+                setCurrentIndex(
+                  Math.floor(Math.random() * ndzySongs.length) + ""
+                )
+              }
+
+              if (type === "0") {
+                if (Number(currentIndex) === ndzySongs.length - 1) {
+                  setCurrentIndex("0")
+                } else {
+                  setCurrentIndex(String(Number(currentIndex) + 1))
+                }
+              }
             }}
           />
         )}
