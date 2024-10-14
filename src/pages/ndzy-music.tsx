@@ -1,8 +1,8 @@
-import { useInterval, useLocalStorageState, useUpdateEffect } from "ahooks"
-import { Button, Select, Space } from "antd"
+import {useInterval, useLocalStorageState, useUpdateEffect} from "ahooks"
+import {Button, Select, Space} from "antd"
 import axios from "axios"
 
-import { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 import ReactPlayer from "react-player"
 
 const NdzyMusic = () => {
@@ -52,7 +52,7 @@ const NdzyMusic = () => {
 
   useInterval(() => {
     init().then()
-  }, 60 * 1000)
+  }, 60 * 60 * 1000)
 
   useUpdateEffect(() => {
     setSong(ndzySongs[currentIndex as any])
@@ -61,25 +61,25 @@ const NdzyMusic = () => {
   return (
     <>
       {song && (
-        <div style={{ textAlign: "center", marginBottom: 16 }}>
-          正在播放：<span style={{ color: "pink" }}>{song.name}</span>
+        <div style={{textAlign: "center", marginBottom: 16}}>
+          正在播放：<span style={{color: "pink"}}>{song.name}</span>
         </div>
       )}
       <Select
         value={type}
         onChange={(v) => setType(v)}
         options={[
-          { label: "顺序", value: "0" },
-          { label: "随机", value: "1" },
+          {label: "顺序", value: "0"},
+          {label: "随机", value: "1"},
         ]}
       />
 
-      <div style={{ paddingBottom: 140, position: "relative" }}>
+      <div style={{paddingBottom: 140, position: "relative"}}>
         <Space wrap size={32}>
           {ndzySongs.map((item, index) => (
-            <div style={{ width: 200 }} key={item.id}>
+            <div style={{width: 200}} key={item.id}>
               <Button
-                style={song?.id === item.id ? { color: "green" } : {}}
+                style={song?.id === item.id ? {color: "green"} : {}}
                 type="link"
                 onClick={() => {
                   setCurrentIndex(String(index))
