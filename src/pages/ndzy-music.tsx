@@ -1,5 +1,6 @@
 import { useInterval } from "ahooks"
 import { Button, Space } from "antd"
+import axios from "axios"
 
 import { useEffect, useState } from "react"
 import ReactPlayer from "react-player"
@@ -8,12 +9,16 @@ const NdzyMusic = () => {
   const [ndzySongs, setNdzySongs] = useState<any[]>([])
   const [song, setSong] = useState<any>()
 
-  const init = () => {
-    fetch("https://www.ndzy01.com/music/data.json")
-      .then((res) => res.json())
-      .then((res) => {
-        setNdzySongs(res)
-      })
+  const init = async () => {
+    const list = ["https://www.ndzy01.com/music/data.json"]
+    const songs: any[] = []
+
+    for await (const url of list) {
+      const data = await axios(url)
+      songs.push(...data.data)
+    }
+
+    setNdzySongs(songs)
   }
 
   useEffect(() => {
