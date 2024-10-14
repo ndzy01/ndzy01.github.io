@@ -87,7 +87,7 @@ const Root = () => {
             </div>
           </header>
           <Menu
-            style={{ borderRadius: 5 }}
+            style={{ borderRadius: 5, zIndex: 9999999 }}
             onClick={(e) => {
               navigate(e.key)
             }}
