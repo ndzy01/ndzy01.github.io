@@ -32,6 +32,7 @@ const Music = () => {
     volume: 0.1,
     duration: 0,
     playedSeconds: 0,
+    fileType: "flac",
   })
   const playerRef = useRef<any>(null)
 
@@ -249,10 +250,24 @@ const Music = () => {
                     currentIndex: ndzyMusic.songs.findIndex((s) => s.id === v),
                   })
                 }
-                options={ndzyMusic.songs.map((item) => ({
-                  value: item.id,
-                  label: item.name,
-                }))}
+                options={ndzyMusic.songs
+                  .filter((item) => item.fileType === state.fileType)
+                  .map((item) => ({
+                    value: item.id,
+                    label: item.name,
+                  }))}
+                placeholder="请选择需要播放的歌曲"
+              />
+
+              <Select
+                style={{ width: 238 }}
+                value={state.fileType}
+                onChange={(v) => setState({ fileType: v })}
+                options={[
+                  { label: "无损", value: "flac" },
+                  { label: "普通", value: "mp3" },
+                ]}
+                placeholder="请选择音质"
               />
 
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>

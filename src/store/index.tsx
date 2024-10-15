@@ -14,6 +14,7 @@ interface Song {
   id: string
   name: string
   url: string
+  fileType?: "flac" | "mp3"
 }
 
 interface NdzyMusic {
