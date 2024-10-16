@@ -1,5 +1,6 @@
 import "./App.css"
 
+import { useEffect } from "react"
 import { RouterProvider, createHashRouter } from "react-router-dom"
 
 import Article from "./pages/article"
@@ -78,6 +79,35 @@ const router = createHashRouter([
 ])
 
 const App = () => {
+  useEffect(() => {
+    async function checkCameraFacing() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" }, // 或 "environment"
+        })
+
+        // 获取视频轨道信息
+        const videoTrack = stream.getVideoTracks()[0]
+        const settings = videoTrack.getSettings()
+
+        // 判断是否为前置还是后置摄像头
+        if (settings.facingMode === "user") {
+          alert("前置摄像头")
+        } else if (settings.facingMode === "environment") {
+          alert("后置摄像头")
+        } else {
+          alert("未知摄像头类型")
+        }
+
+        // 关闭摄像头流，防止占用资源
+        videoTrack.stop()
+      } catch (error) {
+        console.error("无法访问摄像头:", error)
+      }
+    }
+
+    checkCameraFacing()
+  }, [])
   return (
     <StoreApp>
       <RouterProvider router={router} />
