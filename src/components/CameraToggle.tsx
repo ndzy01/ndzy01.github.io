@@ -26,6 +26,9 @@ const CameraToggle = () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = videoRef.current.srcObject.getTracks()
         tracks.forEach((track: any) => track.stop())
+        navigator.mediaDevices.enumerateDevices().then((devices) => {
+          alert(JSON.stringify(devices))
+        })
       }
     }
   }, [facingMode])

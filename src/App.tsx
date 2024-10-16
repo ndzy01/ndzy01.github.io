@@ -78,9 +78,6 @@ const router = createHashRouter([
 ])
 
 const App = () => {
-  navigator.mediaDevices.enumerateDevices().then((devices) => {
-    alert(JSON.stringify(devices))
-  })
   return (
     <StoreApp>
       <RouterProvider router={router} />
