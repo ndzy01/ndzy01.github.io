@@ -301,20 +301,17 @@ const App = (props: { children: React.ReactNode }) => {
   }
 
   const init = async () => {
-    const list = [
-      "https://www.ndzy01.com/music01/data.json",
-      "https://www.ndzy01.com/music02/data.json",
-      "https://www.ndzy01.com/music03/data.json",
-      "https://www.ndzy01.com/music04/data.json",
-      "https://www.ndzy01.com/music05/data.json",
-      "https://www.ndzy01.com/music06/data.json",
-      "https://www.ndzy01.com/music07/data.json",
-      "https://www.ndzy01.com/music08/data.json",
-      "https://www.ndzy01.com/music09/data.json",
-    ]
+    let canRequest = true
+    const list = []
+
+    for (let i = 0; i < 1000; i++) {
+      list.push(`https://www.ndzy01.com/music${i + 1}/data.json`)
+    }
+
     const songs: any[] = []
 
     for await (const url of list) {
+      if (!canRequest) break
       try {
         const data = await axios(url)
 
@@ -322,7 +319,7 @@ const App = (props: { children: React.ReactNode }) => {
           songs.push(...data.data)
         }
       } catch (error) {
-        //
+        canRequest = false
       }
     }
 
