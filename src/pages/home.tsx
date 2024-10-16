@@ -1,4 +1,5 @@
-import Animation from "../components/animation.tsx"
+import CameraToggle from "../components/CameraToggle"
+import Animation from "../components/animation"
 import Img1 from "../components/images/IMG_8998.jpg"
 import Img2 from "../components/images/IMG_8999.jpg"
 import Img3 from "../components/images/IMG_9001.jpg"
@@ -83,6 +84,7 @@ const Home = () => {
   return (
     <>
       <div style={{ padding: "1rem" }}>
+        <CameraToggle />
         <Animation
           imgList={[
             Img1,
