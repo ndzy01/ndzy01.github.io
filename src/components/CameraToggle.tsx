@@ -7,6 +7,7 @@ const CameraToggle = () => {
   // 启动摄像头
   const startCamera = async () => {
     const constraints = { video: { facingMode } }
+    console.log(await navigator.mediaDevices.getUserMedia(constraints))
     try {
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
       if (videoRef.current) {
