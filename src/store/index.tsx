@@ -19,9 +19,11 @@ interface Song {
 
 interface NdzyMusic {
   songs: Song[]
+  data: Song[]
   song?: Song
   type: "0" | "1"
   currentIndex: number
+  fileType: "flac" | "mp3"
 }
 
 interface NdzyContextType {
@@ -71,15 +73,12 @@ const App = (props: { children: React.ReactNode }) => {
   const [songGroup, setSongGroup] = useState<any[]>([])
   const [song, setSong] = useState<any>()
   const [article, setArticle] = useState()
-  const [ndzyMusic, setNdzyMusic] = useSetState<{
-    songs: Song[]
-    song?: Song
-    type: "0" | "1"
-    currentIndex: number
-  }>({
+  const [ndzyMusic, setNdzyMusic] = useSetState<NdzyMusic>({
+    data: [],
     songs: [],
     type: "0",
     currentIndex: -1,
+    fileType: "flac",
   })
 
   const auth = async () => {
@@ -323,7 +322,10 @@ const App = (props: { children: React.ReactNode }) => {
       }
     }
 
-    setNdzyMusic({ songs })
+    setNdzyMusic({
+      data: songs,
+      songs: songs.filter((item) => item.fileType === ndzyMusic.fileType),
+    })
   }
 
   useEffect(() => {
