@@ -7,7 +7,6 @@ const CameraToggle = () => {
   // 启动摄像头
   const startCamera = async () => {
     const constraints = { video: { facingMode } }
-    console.log(await navigator.mediaDevices.getUserMedia(constraints))
     try {
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
       if (videoRef.current) {
@@ -20,15 +19,12 @@ const CameraToggle = () => {
 
   // 当 facingMode 变化时重新启动摄像头
   useEffect(() => {
-    startCamera()
+    startCamera().then()
     // 清理上一次的摄像头流
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = videoRef.current.srcObject.getTracks()
         tracks.forEach((track: any) => track.stop())
-        navigator.mediaDevices.enumerateDevices().then((devices) => {
-          alert(JSON.stringify(devices))
-        })
       }
     }
   }, [facingMode])
